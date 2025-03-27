@@ -14,7 +14,7 @@ const Index = () => {
       id: "flyttstad",
       title: "Flyttstäd",
       description: "Låt oss ta hand om städningen när du flyttar så att du kan fokusera på din nya bostad.",
-      imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
       icon: <HomeIcon size={24} />,
       delay: 100
     },
@@ -38,7 +38,7 @@ const Index = () => {
       id: "demontering",
       title: "Demontering & Bortforsling",
       description: "Vi demonterar och transporterar bort möbler, inredning eller annat du vill bli av med.",
-      imageUrl: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80",
       icon: <Trash2 size={24} />,
       delay: 400
     },
@@ -46,7 +46,7 @@ const Index = () => {
       id: "takbyten",
       title: "Takbyten",
       description: "Professionell installation och reparation av tak med kvalitetsmaterial och garantier.",
-      imageUrl: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&q=80",
       icon: <Construction size={24} />,
       delay: 500
     }

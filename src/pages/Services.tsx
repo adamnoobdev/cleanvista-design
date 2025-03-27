@@ -28,7 +28,7 @@ const servicesData = [
       "Rengöring av alla badrum inklusive avkalkning",
       "Rengöring av ventilationsdon"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
     heroImage: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80"
   },
   {
@@ -94,7 +94,7 @@ const servicesData = [
       "Utrymning av lokaler",
       "Snabb och effektiv service"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80",
     heroImage: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80"
   },
   {
@@ -116,7 +116,7 @@ const servicesData = [
       "Garanti på utfört arbete",
       "Städning och bortforsling efter avslutat arbete"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&q=80",
     heroImage: "https://images.unsplash.com/photo-1632759145351-1d209419fdb9?auto=format&fit=crop&q=80"
   }
 ];
