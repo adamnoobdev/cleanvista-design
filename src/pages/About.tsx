@@ -39,54 +39,9 @@ const AboutPage = () => {
     <div className="page-transition">
       <HeroSection 
         title="Om Bygg & Städ Sandviken"
-        subtitle="Lär känna oss och vår historia, våra värderingar och det team som gör allt möjligt"
+        subtitle="Lär känna oss och våra värderingar"
         imageUrl="https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?auto=format&fit=crop&q=80"
       />
-      
-      {/* Our Story */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="animate-fade-in order-2 md:order-1">
-              <span className="text-sm font-semibold uppercase tracking-wider text-primary">Vår historia</span>
-              <h2 className="text-3xl font-bold mt-2 mb-6">Från en enkel idé till ett betrodd företag</h2>
-              
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Bygg & Städ Sandviken grundades 2007 av Erik Andersson med en vision om att erbjuda 
-                  högkvalitativa tjänster inom både städning och bygg under samma tak. Det som började 
-                  som ett enmansföretag har idag vuxit till ett etablerat företag med ett team av 
-                  dedikerade medarbetare.
-                </p>
-                <p>
-                  Under åren har vi utvecklat vårt tjänsteutbud för att möta våra kunders behov och 
-                  förväntningar. Från början fokuserade vi främst på flyttstädning och mindre byggjobb, 
-                  men idag erbjuder vi ett brett spektrum av tjänster, från kontorsstäd och hantering 
-                  av dödsbon till takbyten och andra större byggprojekt.
-                </p>
-                <p>
-                  Vår framgång bygger på vår orubbliga hängivenhet till kvalitet och kundnöjdhet. Vi tror 
-                  på att bygga långsiktiga relationer med våra kunder genom att alltid leverera över förväntan.
-                </p>
-              </div>
-            </div>
-            
-            <div className="relative animate-fade-in order-1 md:order-2">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?auto=format&fit=crop&q=80" 
-                  alt="Bygg och Städ Sandviken Historia" 
-                  className="w-full h-auto rounded-2xl"
-                />
-              </div>
-              <div className="glass absolute -bottom-6 -right-6 px-6 py-4 rounded-xl shadow-lg">
-                <p className="font-medium text-lg">Grundat 2007</p>
-                <p className="text-muted-foreground">i Sandviken</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       
       {/* Our Values */}
       <section className="py-20 px-6 bg-secondary">
