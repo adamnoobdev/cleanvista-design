@@ -28,8 +28,8 @@ const servicesData = [
       "Rengöring av alla badrum inklusive avkalkning",
       "Rengöring av ventilationsdon"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80"
+    imageUrl: "https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/4107108/pexels-photo-4107108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "kontorsstad",
@@ -50,8 +50,8 @@ const servicesData = [
       "Fönsterputsning (enligt avtal)",
       "Avfläckning av glaspartier och dörrar"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&q=80"
+    imageUrl: "https://images.pexels.com/photos/3760609/pexels-photo-3760609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "dodsbo",
@@ -72,8 +72,8 @@ const servicesData = [
       "Miljövänlig återvinning",
       "Dokumentation under hela processen"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80"
+    imageUrl: "https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "demontering",
@@ -94,8 +94,8 @@ const servicesData = [
       "Utrymning av lokaler",
       "Snabb och effektiv service"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80"
+    imageUrl: "https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "takbyten",
@@ -116,8 +116,8 @@ const servicesData = [
       "Garanti på utfört arbete",
       "Städning och bortforsling efter avslutat arbete"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1632759145351-1d209419fdb9?auto=format&fit=crop&q=80"
+    imageUrl: "https://images.pexels.com/photos/5971639/pexels-photo-5971639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/1769392/pexels-photo-1769392.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   }
 ];
 

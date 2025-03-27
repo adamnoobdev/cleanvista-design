@@ -14,7 +14,7 @@ const Index = () => {
       id: "flyttstad",
       title: "Flyttstäd",
       description: "Låt oss ta hand om städningen när du flyttar så att du kan fokusera på din nya bostad.",
-      imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <HomeIcon size={24} />,
       delay: 100
     },
@@ -22,7 +22,7 @@ const Index = () => {
       id: "kontorsstad",
       title: "Kontorsstäd",
       description: "Vi erbjuder professionell kontorsstädning för en fräsch och hygienisk arbetsmiljö.",
-      imageUrl: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.pexels.com/photos/3760609/pexels-photo-3760609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Building2 size={24} />,
       delay: 200
     },
@@ -30,7 +30,7 @@ const Index = () => {
       id: "dodsbo",
       title: "Dödsbo",
       description: "Professionell och respektfull hantering av dödsbon när du behöver hjälp som mest.",
-      imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Warehouse size={24} />,
       delay: 300
     },
@@ -38,7 +38,7 @@ const Index = () => {
       id: "demontering",
       title: "Demontering & Bortforsling",
       description: "Vi demonterar och transporterar bort möbler, inredning eller annat du vill bli av med.",
-      imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Trash2 size={24} />,
       delay: 400
     },
@@ -46,7 +46,7 @@ const Index = () => {
       id: "takbyten",
       title: "Takbyten",
       description: "Professionell installation och reparation av tak med kvalitetsmaterial och garantier.",
-      imageUrl: "https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.pexels.com/photos/5971639/pexels-photo-5971639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Construction size={24} />,
       delay: 500
     }
