@@ -6,11 +6,34 @@ import {
   Check,
   Loader2
 } from 'lucide-react';
+import { 
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const quoteFormSchema = z.object({
   name: z.string().min(2, { message: "Namn måste innehålla minst 2 tecken" }),
   email: z.string().email({ message: "Ange en giltig e-postadress" }),
   phone: z.string().min(6, { message: "Ange ett giltigt telefonnummer" }),
+  address: z.string().min(5, { message: "Vänligen ange din adress" }),
+  city: z.string().min(2, { message: "Vänligen ange din stad" }),
+  propertySize: z.string().min(1, { message: "Vänligen ange bostadens storlek" }),
+  desiredDate: z.string().min(1, { message: "Vänligen välj ett önskat startdatum" }),
   service: z.string().min(1, { message: "Välj en tjänst" }),
   message: z.string().min(10, { message: "Meddelande måste innehålla minst 10 tecken" }),
 });
@@ -18,37 +41,29 @@ const quoteFormSchema = z.object({
 type QuoteFormValues = z.infer<typeof quoteFormSchema>;
 
 const QuoteForm = () => {
-  const [formData, setFormData] = useState<QuoteFormValues>({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-  });
-  
-  const [errors, setErrors] = useState<Partial<Record<keyof QuoteFormValues, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when field is edited
-    if (errors[name as keyof QuoteFormValues]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
-  };
+  const form = useForm<QuoteFormValues>({
+    resolver: zodResolver(quoteFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      propertySize: '',
+      desiredDate: '',
+      service: '',
+      message: '',
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const onSubmit = async (data: QuoteFormValues) => {
     try {
-      // Validate form data
-      quoteFormSchema.parse(formData);
+      setIsSubmitting(true);
       
       // Simulate API call
-      setIsSubmitting(true);
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       // Show success
@@ -59,27 +74,14 @@ const QuoteForm = () => {
       
       // Reset form after delay
       setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: '',
-          message: '',
-        });
+        form.reset();
         setIsSubmitted(false);
       }, 3000);
       
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        // Convert Zod errors to form errors
-        const formErrors: Partial<Record<keyof QuoteFormValues, string>> = {};
-        error.errors.forEach(err => {
-          if (err.path[0]) {
-            formErrors[err.path[0] as keyof QuoteFormValues] = err.message;
-          }
-        });
-        setErrors(formErrors);
-      }
+      toast.error("Ett fel inträffade", {
+        description: "Försök igen eller kontakta oss direkt via telefon."
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -100,130 +102,189 @@ const QuoteForm = () => {
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label htmlFor="name" className="block font-medium">
-              Namn <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="name"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
               name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${
-                errors.name ? 'border-red-300 bg-red-50' : 'border-input bg-white'
-              }`}
-              placeholder="Ditt namn"
-            />
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label htmlFor="email" className="block font-medium">
-                E-post <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.email ? 'border-red-300 bg-red-50' : 'border-input bg-white'
-                }`}
-                placeholder="Din e-postadress"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Namn <span className="text-red-500">*</span></FormLabel>
+                  <FormControl>
+                    <Input placeholder="Ditt namn" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
+            />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>E-post <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input placeholder="Din e-postadress" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Telefon <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input placeholder="Ditt telefonnummer" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             
-            <div className="space-y-2">
-              <label htmlFor="phone" className="block font-medium">
-                Telefon <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg border ${
-                  errors.phone ? 'border-red-300 bg-red-50' : 'border-input bg-white'
-                }`}
-                placeholder="Ditt telefonnummer"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Adress <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input placeholder="Din gatuadress" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {errors.phone && (
-                <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-              )}
+              
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Stad <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input placeholder="Din stad" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-          </div>
-          
-          <div className="space-y-2">
-            <label htmlFor="service" className="block font-medium">
-              Tjänst <span className="text-red-500">*</span>
-            </label>
-            <select
-              id="service"
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="propertySize"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Bostadens storlek <span className="text-red-500">*</span></FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Välj bostadens storlek" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="under_50">Mindre än 50 kvm</SelectItem>
+                        <SelectItem value="50_80">50-80 kvm</SelectItem>
+                        <SelectItem value="80_120">80-120 kvm</SelectItem>
+                        <SelectItem value="120_200">120-200 kvm</SelectItem>
+                        <SelectItem value="over_200">Större än 200 kvm</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="desiredDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Önskat startdatum <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input type="date" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            <FormField
+              control={form.control}
               name="service"
-              value={formData.service}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-lg border ${
-                errors.service ? 'border-red-300 bg-red-50' : 'border-input bg-white'
-              }`}
-            >
-              <option value="" disabled>Välj tjänst</option>
-              <option value="flyttstad">Flyttstäd</option>
-              <option value="kontorsstad">Kontorsstäd</option>
-              <option value="dodsbo">Dödsbo</option>
-              <option value="demontering">Demontering/Bortforsling</option>
-              <option value="takbyten">Takbyten</option>
-              <option value="annat">Annat</option>
-            </select>
-            {errors.service && (
-              <p className="text-red-500 text-sm mt-1">{errors.service}</p>
-            )}
-          </div>
-          
-          <div className="space-y-2">
-            <label htmlFor="message" className="block font-medium">
-              Meddelande <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-              className={`w-full px-4 py-3 rounded-lg border ${
-                errors.message ? 'border-red-300 bg-red-50' : 'border-input bg-white'
-              }`}
-              placeholder="Beskriv ditt projekt eller förfrågan"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Tjänst <span className="text-red-500">*</span></FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Välj tjänst" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="flyttstad">Flyttstäd</SelectItem>
+                      <SelectItem value="kontorsstad">Kontorsstäd</SelectItem>
+                      <SelectItem value="dodsbo">Dödsbo</SelectItem>
+                      <SelectItem value="demontering">Demontering/Bortforsling</SelectItem>
+                      <SelectItem value="takbyten">Takbyten</SelectItem>
+                      <SelectItem value="annat">Annat</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-            )}
-          </div>
-          
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-medium transition-all hover:bg-primary/90 disabled:opacity-70 flex items-center justify-center"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="animate-spin mr-2" size={18} />
-                Skickar...
-              </>
-            ) : (
-              'Skicka offertförfrågan'
-            )}
-          </button>
-        </form>
+            
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Meddelande <span className="text-red-500">*</span></FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="Beskriv ditt projekt eller förfrågan" 
+                      className="min-h-[120px]" 
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-medium transition-all hover:bg-primary/90 disabled:opacity-70 flex items-center justify-center"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="animate-spin mr-2" size={18} />
+                  Skickar...
+                </>
+              ) : (
+                'Skicka offertförfrågan'
+              )}
+            </button>
+          </form>
+        </Form>
       )}
     </div>
   );
