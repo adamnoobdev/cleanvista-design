@@ -1,473 +1,263 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Info, ArrowRight, Check } from 'lucide-react';
-
+import { Check, X, HelpCircle } from 'lucide-react';
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import HeroSection from '@/components/HeroSection';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
-const PricingPage = () => {
-  const [showRut, setShowRut] = useState(true);
-  
-  // Pricing data for services
-  const pricingData = {
-    flyttstad: {
-      title: "Flyttstäd",
-      basicPrice: 1500, // Price per hour before RUT
-      items: [
-        {
-          type: "1 rum & kök (upp till 40m²)",
-          price: 2500,
-        },
-        {
-          type: "2 rum & kök (40-60m²)",
-          price: 3500,
-        },
-        {
-          type: "3 rum & kök (60-80m²)",
-          price: 4500,
-        },
-        {
-          type: "4 rum & kök (80-100m²)",
-          price: 5500,
-        },
-        {
-          type: "5 rum & kök (100-120m²)",
-          price: 6500,
-        },
-        {
-          type: "Villa (120m²+)",
-          price: "Offereras",
-          isCustom: true
-        }
+// Define types
+type PriceItem = {
+  type: string;
+  price: number;
+  isCustom?: boolean;
+  rutEligible?: boolean;
+};
+
+type PriceItemWithSubItems = {
+  type: string;
+  subItems: PriceItem[];
+  isCustom?: boolean;
+  rutEligible?: boolean;
+};
+
+type Price = PriceItem | PriceItemWithSubItems;
+
+const Pricing = () => {
+  const [activeTab, setActiveTab] = useState("cleaning");
+
+  // Service price data
+  const cleaningPrices: Price[] = [
+    {
+      type: "Flyttstäd",
+      price: 1500,
+      rutEligible: true
+    },
+    {
+      type: "Kontorsstäd",
+      subItems: [
+        { type: "Litet kontor (< 100 kvm)", price: 950, rutEligible: true },
+        { type: "Mellanstort kontor (100-300 kvm)", price: 1800, rutEligible: true },
+        { type: "Stort kontor (> 300 kvm)", price: 0, isCustom: true, rutEligible: true }
       ]
     },
-    kontorsstad: {
-      title: "Kontorsstäd",
-      basicPrice: 350, // Price per m² per month
-      items: [
-        {
-          type: "Grundstädning (per m²)",
-          price: 60,
-        },
-        {
-          type: "Regelbunden städning (per m² och månad)",
-          subItems: [
-            { type: "1 gång/vecka", price: 24 },
-            { type: "2 gånger/vecka", price: 42 },
-            { type: "3 gånger/vecka", price: 55 },
-            { type: "5 gånger/vecka", price: 75 }
-          ]
-        },
-        {
-          type: "Fönsterputsning (per fönster)",
-          price: 100,
-        },
-        {
-          type: "Golvvård (per m²)",
-          price: 85,
-        }
+    {
+      type: "Storstädning",
+      price: 2200,
+      rutEligible: true
+    },
+    {
+      type: "Fönsterputsning",
+      price: 750,
+      rutEligible: true
+    },
+    {
+      type: "Trappstädning",
+      price: 1100,
+      rutEligible: true
+    }
+  ];
+
+  const constructionPrices: Price[] = [
+    {
+      type: "Takbyte",
+      subItems: [
+        { type: "Mindre tak (< 80 kvm)", price: 65000 },
+        { type: "Mellanstort tak (80-150 kvm)", price: 95000 },
+        { type: "Stort tak (> 150 kvm)", price: 0, isCustom: true }
       ]
     },
-    dodsbo: {
-      title: "Dödsbo",
-      info: "Priser för dödsbo varierar beroende på omfattning och specifika behov. Kontakta oss för en kostnadsfri offert.",
-      isCustom: true
+    {
+      type: "Demontering",
+      price: 750
     },
-    demontering: {
-      title: "Demontering & Bortforsling",
-      basicPrice: 450, // Per hour
-      items: [
-        {
-          type: "Demontering (per timme)",
-          price: 450,
-        },
-        {
-          type: "Bortforsling (per kubikmeter)",
-          price: 600,
-        },
-        {
-          type: "Källsortering (per timme)",
-          price: 400,
-        },
-        {
-          type: "Transport till återvinningscentral",
-          subItems: [
-            { type: "Mindre mängd (under 3m³)", price: 1200 },
-            { type: "Större mängd (över 3m³)", price: 1800 }
-          ]
-        }
-      ]
+    {
+      type: "Bortforsling",
+      price: 1200
     },
-    takbyten: {
-      title: "Takbyten",
-      info: "Kostnaden för takbyten varierar beroende på takets storlek, material och specifika förutsättningar. Kontakta oss för en kostnadsfri inspektion och offert.",
+    {
+      type: "Dödsbo",
+      price: 0,
       isCustom: true
     }
-  };
+  ];
 
-  // Calculate price with RUT deduction (50% off labor cost, max 75000 SEK per person per year)
-  const calculateRutPrice = (price) => {
-    if (typeof price === 'number') {
-      return Math.ceil(price * 0.5);
-    }
-    return price;
+  const activeTabPrices = activeTab === "cleaning" ? cleaningPrices : constructionPrices;
+
+  // Check if an item is of type PriceItemWithSubItems
+  const hasSubItems = (item: Price): item is PriceItemWithSubItems => {
+    return 'subItems' in item && Array.isArray(item.subItems);
   };
 
   return (
     <div className="page-transition">
       <HeroSection 
-        title="Våra priser"
-        subtitle="Transparent prissättning för alla våra tjänster, med och utan RUT-avdrag"
-        imageUrl="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80"
+        title="Priser och tjänster"
+        subtitle="Transparenta priser för alla våra tjänster"
+        imageUrl="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80"
       />
       
       <section className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl font-bold mb-6">Prislista</h2>
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-16 animate-fade-in">
+            <span className="text-sm font-semibold uppercase tracking-wider text-primary">Våra priser</span>
+            <h2 className="text-3xl font-bold mt-2 mb-6">Transparenta priser som passar din budget</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Nedan hittar du priserna för våra olika tjänster. Alla priser är inklusive moms.
-              För tjänster markerade med RUT-avdrag visas både ordinarie pris och pris efter avdrag.
+              Vi erbjuder konkurrenskraftiga priser för alla våra tjänster. Notera att vissa komplexa 
+              jobb kräver en kostnadsfri offert för att vi ska kunna ge dig ett exakt pris.
             </p>
             
-            <div className="inline-flex items-center rounded-full p-1 bg-secondary mb-8">
-              <button 
-                className={`px-6 py-2 rounded-full transition-all ${
-                  showRut ? 'bg-primary text-primary-foreground' : 'bg-transparent'
+            {/* Tab Buttons */}
+            <div className="inline-flex items-center bg-secondary p-1 rounded-full mb-12">
+              <button
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeTab === "cleaning" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-secondary-foreground/10"
                 }`}
-                onClick={() => setShowRut(true)}
+                onClick={() => setActiveTab("cleaning")}
               >
-                Med RUT-avdrag
+                Städtjänster
               </button>
-              <button 
-                className={`px-6 py-2 rounded-full transition-all ${
-                  !showRut ? 'bg-primary text-primary-foreground' : 'bg-transparent'
+              <button
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeTab === "construction" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-secondary-foreground/10"
                 }`}
-                onClick={() => setShowRut(false)}
+                onClick={() => setActiveTab("construction")}
               >
-                Utan RUT-avdrag
+                Byggtjänster
               </button>
-            </div>
-            
-            <div className="flex items-center justify-center mb-8 text-sm bg-muted p-3 rounded-lg max-w-xl mx-auto">
-              <Info size={16} className="mr-2 text-primary flex-shrink-0" />
-              <p className="text-left">
-                RUT-avdraget gäller för städtjänster och vissa typer av trädgårdsarbete. 
-                Avdraget är 50% av arbetskostnaden, upp till 75 000 kr per person och år.
-              </p>
             </div>
           </div>
           
-          {/* Pricing Tables */}
-          <div className="space-y-16">
-            {/* Flyttstäd Pricing */}
-            <div className="animate-fade-in">
-              <h3 className="text-2xl font-bold mb-6">{pricingData.flyttstad.title}</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full glass rounded-xl overflow-hidden">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="px-6 py-4 text-left">Bostadsstorlek</th>
-                      <th className="px-6 py-4 text-right">
-                        Pris {showRut ? 'efter RUT-avdrag' : ''}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pricingData.flyttstad.items.map((item, index) => (
-                      <tr key={index} className="border-b border-border">
-                        <td className="px-6 py-4">{item.type}</td>
-                        <td className="px-6 py-4 text-right font-medium">
-                          {item.isCustom ? item.price : (
-                            <>
-                              {showRut ? (
-                                <>
-                                  {calculateRutPrice(item.price)} kr
-                                  <span className="text-sm text-muted-foreground ml-2">
-                                    (ord. {item.price} kr)
-                                  </span>
-                                </>
-                              ) : (
-                                `${item.price} kr`
+          {/* Pricing Table */}
+          <div className="bg-card rounded-xl overflow-hidden shadow-lg animate-fade-in">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-secondary">
+                    <th className="px-6 py-4 text-left font-medium">Tjänst</th>
+                    <th className="px-6 py-4 text-right font-medium">Pris (SEK)</th>
+                    <th className="px-6 py-4 text-center font-medium">Information</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {activeTabPrices.map((item, index) => (
+                    hasSubItems(item) ? (
+                      <React.Fragment key={`${item.type}-${index}`}>
+                        <tr className="bg-secondary/50">
+                          <td colSpan={3} className="px-6 py-3 font-medium">{item.type}</td>
+                        </tr>
+                        {item.subItems.map((subItem, subIndex) => (
+                          <tr key={`${subItem.type}-${subIndex}`} className="hover:bg-muted/50">
+                            <td className="px-6 py-4 pl-10">{subItem.type}</td>
+                            <td className="px-6 py-4 text-right">
+                              {subItem.isCustom ? 'Begär offert' : `${subItem.price} kr`}
+                              {subItem.price > 0 && activeTab === "cleaning" && (
+                                <span className="text-xs text-muted-foreground block mt-1">
+                                  Från {Math.round(subItem.price * 0.5)} kr efter RUT-avdrag
+                                </span>
                               )}
-                            </>
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                              {subItem.rutEligible && (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger>
+                                      <div className="inline-flex items-center justify-center p-1 rounded-full bg-primary/10 text-primary">
+                                        <HelpCircle size={16} />
+                                      </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p className="max-w-xs">
+                                        Denna tjänst är RUT-berättigad. RUT-avdraget är 50% 
+                                        av arbetskostnaden, upp till 50 000 kr per person och år.
+                                      </p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </React.Fragment>
+                    ) : (
+                      <tr key={`${item.type}-${index}`} className="hover:bg-muted/50">
+                        <td className="px-6 py-4">{item.type}</td>
+                        <td className="px-6 py-4 text-right">
+                          {item.isCustom ? 'Begär offert' : `${item.price} kr`}
+                          {item.price > 0 && activeTab === "cleaning" && (
+                            <span className="text-xs text-muted-foreground block mt-1">
+                              Från {Math.round(item.price * 0.5)} kr efter RUT-avdrag
+                            </span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 text-center">
+                          {item.rutEligible && (
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <div className="inline-flex items-center justify-center p-1 rounded-full bg-primary/10 text-primary">
+                                    <HelpCircle size={16} />
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="max-w-xs">
+                                    Denna tjänst är RUT-berättigad. RUT-avdraget är 50% 
+                                    av arbetskostnaden, upp till 50 000 kr per person och år.
+                                  </p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
                           )}
                         </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground">
-                * Alla priser är inklusive moms och material. Tillägg kan tillkomma för särskilt smutsiga ytor eller specialrengöring.
-              </p>
-            </div>
-            
-            {/* Kontorsstäd Pricing */}
-            <div className="animate-fade-in">
-              <h3 className="text-2xl font-bold mb-6">{pricingData.kontorsstad.title}</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full glass rounded-xl overflow-hidden">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="px-6 py-4 text-left">Tjänst</th>
-                      <th className="px-6 py-4 text-right">
-                        Pris {showRut ? 'efter RUT-avdrag' : ''}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pricingData.kontorsstad.items.map((item, index) => (
-                      <React.Fragment key={index}>
-                        {item.subItems ? (
-                          <tr className="border-b border-border bg-muted/30">
-                            <td colSpan={2} className="px-6 py-3 font-medium">
-                              {item.type}
-                            </td>
-                          </tr>
-                        ) : (
-                          <tr className="border-b border-border">
-                            <td className="px-6 py-4">{item.type}</td>
-                            <td className="px-6 py-4 text-right font-medium">
-                              {showRut ? (
-                                <>
-                                  {calculateRutPrice(item.price)} kr
-                                  <span className="text-sm text-muted-foreground ml-2">
-                                    (ord. {item.price} kr)
-                                  </span>
-                                </>
-                              ) : (
-                                `${item.price} kr`
-                              )}
-                            </td>
-                          </tr>
-                        )}
-                        
-                        {item.subItems && item.subItems.map((subItem, subIndex) => (
-                          <tr key={`${index}-${subIndex}`} className="border-b border-border">
-                            <td className="px-6 py-4 pl-10">{subItem.type}</td>
-                            <td className="px-6 py-4 text-right font-medium">
-                              {showRut ? (
-                                <>
-                                  {calculateRutPrice(subItem.price)} kr
-                                  <span className="text-sm text-muted-foreground ml-2">
-                                    (ord. {subItem.price} kr)
-                                  </span>
-                                </>
-                              ) : (
-                                `${subItem.price} kr`
-                              )}
-                            </td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground">
-                * Priser för kontorsstäd är angivna exklusive moms. Tillägg kan tillkomma beroende på specifika krav och behov.
-              </p>
-            </div>
-            
-            {/* Demontering & Bortforsling Pricing */}
-            <div className="animate-fade-in">
-              <h3 className="text-2xl font-bold mb-6">{pricingData.demontering.title}</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full glass rounded-xl overflow-hidden">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="px-6 py-4 text-left">Tjänst</th>
-                      <th className="px-6 py-4 text-right">
-                        Pris {showRut ? 'efter RUT-avdrag' : ''}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pricingData.demontering.items.map((item, index) => (
-                      <React.Fragment key={index}>
-                        {item.subItems ? (
-                          <tr className="border-b border-border bg-muted/30">
-                            <td colSpan={2} className="px-6 py-3 font-medium">
-                              {item.type}
-                            </td>
-                          </tr>
-                        ) : (
-                          <tr className="border-b border-border">
-                            <td className="px-6 py-4">{item.type}</td>
-                            <td className="px-6 py-4 text-right font-medium">
-                              {item.isCustom ? item.price : (
-                                <>
-                                  {showRut && item.rutEligible ? (
-                                    <>
-                                      {calculateRutPrice(item.price)} kr
-                                      <span className="text-sm text-muted-foreground ml-2">
-                                        (ord. {item.price} kr)
-                                      </span>
-                                    </>
-                                  ) : (
-                                    `${item.price} kr`
-                                  )}
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                        )}
-                        
-                        {item.subItems && item.subItems.map((subItem, subIndex) => (
-                          <tr key={`${index}-${subIndex}`} className="border-b border-border">
-                            <td className="px-6 py-4 pl-10">{subItem.type}</td>
-                            <td className="px-6 py-4 text-right font-medium">
-                              {subItem.isCustom ? subItem.price : (
-                                <>
-                                  {showRut && subItem.rutEligible ? (
-                                    <>
-                                      {calculateRutPrice(subItem.price)} kr
-                                      <span className="text-sm text-muted-foreground ml-2">
-                                        (ord. {subItem.price} kr)
-                                      </span>
-                                    </>
-                                  ) : (
-                                    `${subItem.price} kr`
-                                  )}
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground">
-                * Alla priser är inklusive moms. Demontering och bortforsling är inte RUT-berättigat.
-              </p>
-            </div>
-            
-            {/* Custom Quote Services */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
-              {/* Dödsbo */}
-              <div className="glass rounded-xl p-8">
-                <h3 className="text-2xl font-bold mb-4">{pricingData.dodsbo.title}</h3>
-                <p className="text-muted-foreground mb-6">
-                  {pricingData.dodsbo.info}
-                </p>
-                <ul className="space-y-2 mb-8">
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Komplett tömning av bostad</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Värdering av inventarier</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Slutstädning av bostaden</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Miljövänlig återvinning</span>
-                  </li>
-                </ul>
-                <Link 
-                  to="/quote" 
-                  className="inline-flex items-center text-primary font-medium group"
-                >
-                  Begär offert
-                  <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
-                </Link>
-              </div>
-              
-              {/* Takbyten */}
-              <div className="glass rounded-xl p-8">
-                <h3 className="text-2xl font-bold mb-4">{pricingData.takbyten.title}</h3>
-                <p className="text-muted-foreground mb-6">
-                  {pricingData.takbyten.info}
-                </p>
-                <ul className="space-y-2 mb-8">
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Kostnadsfri inspektion och offert</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Kvalitetsmaterial med garanti</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Professionell installation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Grundlig städning efteråt</span>
-                  </li>
-                </ul>
-                <Link 
-                  to="/quote" 
-                  className="inline-flex items-center text-primary font-medium group"
-                >
-                  Begär offert
-                  <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
-                </Link>
-              </div>
+                    )
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
           
-          {/* RUT Information */}
-          <div className="mt-20 bg-secondary p-8 rounded-xl animate-fade-in">
-            <h3 className="text-2xl font-bold mb-6">Om RUT-avdrag</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <p className="mb-4">
-                  RUT-avdraget är en skattereduktion för hushållsnära tjänster. Det innebär att du 
-                  kan få en skattereduktion på 50% av arbetskostnaden för vissa tjänster, upp till 
-                  ett maxbelopp på 75 000 kronor per person och år.
-                </p>
-                <p className="mb-4">
-                  För att få RUT-avdrag måste du ha betalat tillräckligt med skatt under året. Vi 
-                  hanterar all administration kring RUT-avdraget och drar av beloppet direkt på 
-                  din faktura.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-3">Vilka tjänster berättigar till RUT-avdrag?</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Flyttstäd</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Regelbunden hemstädning</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Fönsterputsning</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="text-primary mt-1 flex-shrink-0" size={18} />
-                    <span className="ml-2">Vissa trädgårdstjänster</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          {/* Note */}
+          <div className="mt-8 p-6 bg-muted rounded-xl animate-fade-in">
+            <h3 className="text-lg font-medium mb-2">Viktig information om priser:</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-start">
+                <Check className="text-primary mr-2 mt-0.5 shrink-0" size={18} />
+                <span>Alla priser är inklusive moms och gäller från 1 januari 2023.</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="text-primary mr-2 mt-0.5 shrink-0" size={18} />
+                <span>"Begär offert" innebär att priset varierar beroende på arbetets omfattning och specifika krav.</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="text-primary mr-2 mt-0.5 shrink-0" size={18} />
+                <span>RUT-avdraget är 50% av arbetskostnaden, upp till 50 000 kr per person och år.</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="text-primary mr-2 mt-0.5 shrink-0" size={18} />
+                <span>För städtjänster tillkommer normalt inga extra kostnader för rengöringsmedel eller utrustning.</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="text-primary mr-2 mt-0.5 shrink-0" size={18} />
+                <span>För byggtjänster kan materialkostnader tillkomma beroende på projektets art.</span>
+              </li>
+            </ul>
           </div>
           
-          {/* Call to Action */}
-          <div className="text-center mt-20 animate-fade-in">
-            <h3 className="text-2xl font-bold mb-4">Redo att komma igång?</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Kontakta oss idag för att diskutera ditt projekt eller begära en offert. 
-              Vi ser fram emot att hjälpa dig!
+          {/* CTA */}
+          <div className="mt-12 text-center animate-fade-in">
+            <p className="text-muted-foreground mb-6">
+              Har du frågor om våra priser eller vill begära en offert?
             </p>
-            <Link 
-              to="/quote" 
-              className="inline-flex items-center bg-primary text-primary-foreground px-8 py-4 rounded-full font-medium text-lg group"
-            >
-              Begär offert
-              <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
+            <Link to="/quote">
+              <Button size="lg" className="rounded-full">
+                Begär offert
+              </Button>
             </Link>
           </div>
         </div>
@@ -476,4 +266,4 @@ const PricingPage = () => {
   );
 };
 
-export default PricingPage;
+export default Pricing;
