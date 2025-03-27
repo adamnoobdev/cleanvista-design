@@ -35,28 +35,6 @@ const AboutPage = () => {
     }
   ];
 
-  // Team members
-  const team = [
-    {
-      name: "Erik Andersson",
-      title: "Grundare & VD",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
-      description: "Erik grundade företaget 2007 och har över 20 års erfarenhet inom bygg- och städbranschen."
-    },
-    {
-      name: "Maria Lindgren",
-      title: "Verksamhetschef",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
-      description: "Maria ansvarar för den dagliga verksamheten och ser till att alla projekt löper smidigt."
-    },
-    {
-      name: "Johan Nilsson",
-      title: "Arbetsledare",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
-      description: "Johan leder våra arbetsgrupper och säkerställer att alla arbeten utförs med högsta kvalitet."
-    }
-  ];
-
   return (
     <div className="page-transition">
       <HeroSection 
@@ -139,57 +117,6 @@ const AboutPage = () => {
         </div>
       </section>
       
-      {/* Our Team */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16 animate-fade-in">
-            <span className="text-sm font-semibold uppercase tracking-wider text-primary">Vårt team</span>
-            <h2 className="text-3xl font-bold mt-2 mb-6">Personerna bakom företaget</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Möt de dedikerade individerna som arbetar hårt för att leverera högkvalitativa tjänster till våra kunder.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div 
-                key={index} 
-                className="glass rounded-xl overflow-hidden animate-fade-in glass-hover"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="h-72 overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold">{member.name}</h3>
-                  <p className="text-primary mb-3">{member.title}</p>
-                  <p className="text-muted-foreground">{member.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-16 animate-fade-in">
-            <h3 className="text-2xl font-bold mb-4">Vi letar alltid efter duktiga medarbetare</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Är du intresserad av att bli en del av vårt team? Vi söker alltid efter passionerade 
-              och engagerade personer som delar våra värderingar.
-            </p>
-            <Link 
-              to="/contact" 
-              className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
-            >
-              Kontakta oss
-              <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
-      
       {/* Why Choose Us */}
       <section className="py-20 px-6 bg-secondary">
         <div className="container mx-auto max-w-6xl">
@@ -250,6 +177,25 @@ const AboutPage = () => {
                 med upp till 50%. Vi hjälper dig med all administration kring detta.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center animate-fade-in">
+            <h3 className="text-2xl font-bold mb-4">Vi letar alltid efter duktiga medarbetare</h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+              Är du intresserad av att bli en del av vårt team? Vi söker alltid efter passionerade 
+              och engagerade personer som delar våra värderingar.
+            </p>
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+            >
+              Kontakta oss
+              <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
+            </Link>
           </div>
         </div>
       </section>
