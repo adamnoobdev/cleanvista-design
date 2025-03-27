@@ -14,7 +14,7 @@ const Index = () => {
       id: "flyttstad",
       title: "Flyttstäd",
       description: "Låt oss ta hand om städningen när du flyttar så att du kan fokusera på din nya bostad.",
-      imageUrl: "https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageUrl: "https://images.pexels.com/photos/4107108/pexels-photo-4107108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <HomeIcon size={24} />,
       delay: 100
     },
@@ -22,7 +22,7 @@ const Index = () => {
       id: "kontorsstad",
       title: "Kontorsstäd",
       description: "Vi erbjuder professionell kontorsstädning för en fräsch och hygienisk arbetsmiljö.",
-      imageUrl: "https://images.pexels.com/photos/260931/pexels-photo-260931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageUrl: "https://images.pexels.com/photos/9462280/pexels-photo-9462280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Building2 size={24} />,
       delay: 200
     },
@@ -30,7 +30,7 @@ const Index = () => {
       id: "dodsbo",
       title: "Dödsbo",
       description: "Professionell och respektfull hantering av dödsbon när du behöver hjälp som mest.",
-      imageUrl: "https://images.pexels.com/photos/2635038/pexels-photo-2635038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageUrl: "https://images.pexels.com/photos/6444266/pexels-photo-6444266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Warehouse size={24} />,
       delay: 300
     },
@@ -38,7 +38,7 @@ const Index = () => {
       id: "demontering",
       title: "Demontering & Bortforsling",
       description: "Vi demonterar och transporterar bort möbler, inredning eller annat du vill bli av med.",
-      imageUrl: "https://images.pexels.com/photos/6316064/pexels-photo-6316064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageUrl: "https://images.pexels.com/photos/6474805/pexels-photo-6474805.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Trash2 size={24} />,
       delay: 400
     },
@@ -46,7 +46,7 @@ const Index = () => {
       id: "takbyten",
       title: "Takbyten",
       description: "Professionell installation och reparation av tak med kvalitetsmaterial och garantier.",
-      imageUrl: "https://images.pexels.com/photos/5969/wood-construction-roof-framework.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageUrl: "https://images.pexels.com/photos/7214166/pexels-photo-7214166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       icon: <Construction size={24} />,
       delay: 500
     }
