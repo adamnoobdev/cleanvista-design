@@ -28,7 +28,7 @@ const servicesData = [
       "Rengöring av alla badrum inklusive avkalkning",
       "Rengöring av ventilationsdon"
     ],
-    imageUrl: "https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    imageUrl: "https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     heroImage: "https://images.pexels.com/photos/4107108/pexels-photo-4107108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
@@ -50,8 +50,8 @@ const servicesData = [
       "Fönsterputsning (enligt avtal)",
       "Avfläckning av glaspartier och dörrar"
     ],
-    imageUrl: "https://images.pexels.com/photos/3760609/pexels-photo-3760609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.pexels.com/photos/260931/pexels-photo-260931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/54581/escalator-stairs-metal-segments-architecture-54581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "dodsbo",
@@ -72,8 +72,8 @@ const servicesData = [
       "Miljövänlig återvinning",
       "Dokumentation under hela processen"
     ],
-    imageUrl: "https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.pexels.com/photos/2635038/pexels-photo-2635038.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "demontering",
@@ -94,8 +94,8 @@ const servicesData = [
       "Utrymning av lokaler",
       "Snabb och effektiv service"
     ],
-    imageUrl: "https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.pexels.com/photos/6316064/pexels-photo-6316064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/4482936/pexels-photo-4482936.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: "takbyten",
@@ -116,8 +116,8 @@ const servicesData = [
       "Garanti på utfört arbete",
       "Städning och bortforsling efter avslutat arbete"
     ],
-    imageUrl: "https://images.pexels.com/photos/5971639/pexels-photo-5971639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/1769392/pexels-photo-1769392.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.pexels.com/photos/5969/wood-construction-roof-framework.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    heroImage: "https://images.pexels.com/photos/100669/pexels-photo-100669.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   }
 ];
 
