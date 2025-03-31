@@ -29,7 +29,7 @@ const ContactSection = () => {
       <div className="container mx-auto max-w-5xl">
         <div className="flex flex-col md:flex-row gap-8 items-center">
           <div className="md:w-2/5 lg:w-1/3">
-            <div className="rounded-lg overflow-hidden shadow-md">
+            <div className="rounded-sm overflow-hidden shadow-md">
               {loading ? (
                 <div className="w-full h-48 bg-muted flex items-center justify-center">
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
@@ -39,7 +39,7 @@ const ContactSection = () => {
                   <img 
                     src={teamImageUrl} 
                     alt="Benjamin Mujezinovic" 
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover"
                   />
                 </AspectRatio>
               )}
@@ -57,15 +57,15 @@ const ContactSection = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <a 
-                href="tel:+46762241799" 
+                href="tel:+46725302323" 
                 className="flex items-center gap-3 group"
               >
-                <div className="bg-primary p-2 rounded-md text-white group-hover:bg-primary/90 transition-colors">
+                <div className="bg-primary p-2 rounded-sm text-white group-hover:bg-primary/90 transition-colors">
                   <Phone size={18} />
                 </div>
                 <div>
                   <div className="font-medium text-sm">Telefon</div>
-                  <div className="text-muted-foreground text-sm">+46 76-224 17 99</div>
+                  <div className="text-muted-foreground text-sm">072-530 23 23</div>
                 </div>
               </a>
               
@@ -73,7 +73,7 @@ const ContactSection = () => {
                 href="mailto:Benjamin.saic@gmail.com" 
                 className="flex items-center gap-3 group"
               >
-                <div className="bg-primary p-2 rounded-md text-white group-hover:bg-primary/90 transition-colors">
+                <div className="bg-primary p-2 rounded-sm text-white group-hover:bg-primary/90 transition-colors">
                   <Mail size={18} />
                 </div>
                 <div>
@@ -84,7 +84,7 @@ const ContactSection = () => {
             </div>
             
             <div>
-              <Button asChild size="default" className="rounded-md">
+              <Button asChild size="default" className="rounded-sm">
                 <a href="/quote">Begär offert</a>
               </Button>
             </div>

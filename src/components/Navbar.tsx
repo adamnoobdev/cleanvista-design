@@ -44,13 +44,12 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold text-primary flex items-center">
+        <Link to="/" className="flex items-center" aria-label="Gå till startsidan">
           <img 
             src="https://xzzytdbscfivjkiqiwin.supabase.co/storage/v1/object/public/images//Logotyp.png" 
             alt="Bygg & Städ i toppklass Sandviken" 
             className="h-10 w-auto"
           />
-          {/* Removed the text span that was here */}
         </Link>
         
         <div className="hidden md:flex space-x-8">
@@ -58,12 +57,11 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`relative transition-colors duration-200 
+              className={`relative transition-colors duration-200 px-3 py-2 
                 ${isActive(item.path) 
-                  ? 'text-primary font-medium' 
+                  ? 'text-primary font-medium border-b-2 border-primary' 
                   : 'text-foreground hover:text-primary'
-                }
-                ${isActive(item.path) ? 'border-b-2 border-primary' : ''}`}
+                }`}
             >
               {item.name}
             </Link>
@@ -71,17 +69,18 @@ const Navbar = () => {
         </div>
         
         <button 
-          className="md:hidden text-foreground" 
+          className="md:hidden text-foreground p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? "Stäng meny" : "Öppna meny"}
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
       
       {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-md mt-3 mx-6 rounded-md overflow-hidden">
-          <div className="flex flex-col py-4">
+        <div className="md:hidden bg-white shadow-md mx-6 mt-3 rounded-sm overflow-hidden">
+          <div className="flex flex-col">
             {navItems.map((item) => (
               <Link
                 key={item.path}

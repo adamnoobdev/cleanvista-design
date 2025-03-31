@@ -29,10 +29,11 @@ const HeroSection = ({
           backgroundPosition: 'center',
           filter: 'brightness(0.8)',
         }}
+        aria-hidden="true"
       />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/10 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/10 z-10" aria-hidden="true" />
 
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-6">
@@ -45,7 +46,8 @@ const HeroSection = ({
           </p>
           <Link 
             to={ctaLink} 
-            className="inline-flex items-center bg-primary text-primary-foreground px-8 py-4 rounded-md font-medium text-lg group"
+            className="inline-flex items-center bg-primary text-primary-foreground px-8 py-4 rounded-sm font-medium text-lg group"
+            aria-label={ctaText}
           >
             {ctaText}
             <ArrowRight className="ml-2 transition-transform duration-200 group-hover:translate-x-1" size={18} />

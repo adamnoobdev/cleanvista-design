@@ -16,7 +16,7 @@ interface ServiceCardProps {
 const ServiceCard = ({ id, title, description, imageUrl, icon: Icon }: ServiceCardProps) => {
   return (
     <div 
-      className="bg-white border border-border shadow-sm rounded-md overflow-hidden transition-all duration-200 hover:shadow-md group flex flex-col h-full"
+      className="bg-white border border-border shadow-sm rounded-sm overflow-hidden transition-all duration-200 hover:shadow-md group flex flex-col h-full"
     >
       <div className="relative h-60 overflow-hidden">
         <img 
@@ -32,6 +32,7 @@ const ServiceCard = ({ id, title, description, imageUrl, icon: Icon }: ServiceCa
         <Link 
           to={`/services/${id}`} 
           className="inline-flex items-center text-primary font-medium group/link mt-auto"
+          aria-label={`Läs mer om ${title}`}
         >
           Läs mer
           <ArrowRight 
