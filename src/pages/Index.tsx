@@ -10,7 +10,7 @@ import { testimonials } from '@/data/testimonials';
 import { getHeroImageUrl } from '@/utils/supabaseStorage';
 
 const Index = () => {
-  // Use placeholder hero image
+  // Use hero image with fallback
   const heroImageUrl = getHeroImageUrl();
   
   return (

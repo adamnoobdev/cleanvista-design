@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
@@ -7,10 +6,6 @@ import HeroSection from '@/components/HeroSection';
 import ServiceCard from '@/components/ServiceCard';
 import QuoteForm from '@/components/QuoteForm';
 import { getServiceImageUrl, getHeroImageUrl } from '@/utils/supabaseStorage';
-
-// Placeholder images
-const placeholderImage = getServiceImageUrl();
-const placeholderHero = getHeroImageUrl();
 
 // Service data with detailed content
 const servicesData = [
@@ -33,8 +28,8 @@ const servicesData = [
       "Rengöring av alla badrum inklusive avkalkning",
       "Rengöring av ventilationsdon"
     ],
-    imageUrl: placeholderImage,
-    heroImage: placeholderHero
+    imageUrl: getServiceImageUrl('flyttstad'),
+    heroImage: getHeroImageUrl()
   },
   {
     id: "kontorsstad",
@@ -55,8 +50,8 @@ const servicesData = [
       "Fönsterputsning (enligt avtal)",
       "Avfläckning av glaspartier och dörrar"
     ],
-    imageUrl: placeholderImage,
-    heroImage: placeholderHero
+    imageUrl: getServiceImageUrl('kontorsstad'),
+    heroImage: getHeroImageUrl()
   },
   {
     id: "dodsbo",
@@ -77,8 +72,8 @@ const servicesData = [
       "Miljövänlig återvinning",
       "Dokumentation under hela processen"
     ],
-    imageUrl: placeholderImage,
-    heroImage: placeholderHero
+    imageUrl: getServiceImageUrl('dodsbo'),
+    heroImage: getHeroImageUrl()
   },
   {
     id: "demontering",
@@ -99,8 +94,8 @@ const servicesData = [
       "Utrymning av lokaler",
       "Snabb och effektiv service"
     ],
-    imageUrl: placeholderImage,
-    heroImage: placeholderHero
+    imageUrl: getServiceImageUrl('demontering'),
+    heroImage: getHeroImageUrl()
   },
   {
     id: "takbyten",
@@ -121,8 +116,8 @@ const servicesData = [
       "Garanti på utfört arbete",
       "Städning och bortforsling efter avslutat arbete"
     ],
-    imageUrl: placeholderImage,
-    heroImage: placeholderHero
+    imageUrl: getServiceImageUrl('takbyten'),
+    heroImage: getHeroImageUrl()
   }
 ];
 

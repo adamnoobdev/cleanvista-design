@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { getAboutImageUrl } from '@/utils/supabaseStorage';
 
-// Get a placeholder image
+// Get about image with fallback
 const teamImageUrl = getAboutImageUrl();
 
 const AboutSection = () => {
