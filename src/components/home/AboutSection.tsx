@@ -28,7 +28,7 @@ const AboutSection = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <span className="text-sm font-semibold uppercase tracking-wider text-primary">Om Bygg & Städ Sandviken</span>
+            <span className="text-sm font-semibold uppercase tracking-wider text-primary">Om Bygg & Städ i toppklass Sandviken</span>
             <h2 className="text-3xl font-bold mt-2 mb-6">Din lokala partner för städning och byggtjänster</h2>
             <p className="text-muted-foreground mb-6">
               Med lång erfarenhet och ett genuint engagemang för kvalitet erbjuder vi ett brett utbud av tjänster 

@@ -62,7 +62,7 @@ const Footer = () => {
           
           {/* About */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-4">Om Bygg & Städ Sandviken</h3>
+            <h3 className="text-xl font-semibold mb-4">Om Bygg & Städ i toppklass Sandviken</h3>
             <p>
               Vi erbjuder professionella tjänster inom flyttstäd, kontorsstäd, dödsbo, 
               demontering/bortforsling samt takbyten. Med fokus på kvalitet och kundnöjdhet 
@@ -74,7 +74,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-white/10 mt-10 pt-6 px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© {currentYear} Bygg & Städ Sandviken. Alla rättigheter förbehållna.</p>
+            <p>© {currentYear} Bygg & Städ i toppklass Sandviken. Alla rättigheter förbehållna.</p>
             <div className="mt-4 md:mt-0">
               <Link to="/privacy-policy" className="text-sm hover:underline mr-4">Integritetspolicy</Link>
               <Link to="/terms" className="text-sm hover:underline">Villkor</Link>

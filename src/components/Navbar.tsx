@@ -45,7 +45,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold text-primary flex items-center space-x-2">
-          <span className="text-2xl">Bygg & Städ Sandviken</span>
+          <span className="text-2xl">Bygg & Städ i toppklass Sandviken</span>
         </Link>
         
         {/* Desktop Menu */}

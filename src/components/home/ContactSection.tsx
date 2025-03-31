@@ -50,7 +50,7 @@ const ContactSection = () => {
             <span className="text-sm font-semibold uppercase tracking-wider text-primary">Kontakta oss</span>
             <h2 className="text-2xl font-bold mt-2 mb-4">Prata med Benjamin direkt</h2>
             <p className="text-muted-foreground mb-6 text-sm">
-              Benjamin Mujezinovic är ägare för företaget och kan hjälpa dig med alla frågor 
+              Benjamin Mujezinovic är ägare för Bygg & Städ i toppklass Sandviken och kan hjälpa dig med alla frågor 
               gällande våra städ- och byggtjänster. Kontakta honom för en 
               kostnadsfri konsultation eller offert.
             </p>
