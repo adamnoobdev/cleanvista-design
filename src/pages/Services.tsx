@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
@@ -28,8 +27,8 @@ const servicesData = [
       "Rengöring av alla badrum inklusive avkalkning",
       "Rengöring av ventilationsdon"
     ],
-    imageUrl: "https://images.pexels.com/photos/4107108/pexels-photo-4107108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/4439901/pexels-photo-4439901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80",
+    heroImage: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?auto=format&fit=crop&q=80"
   },
   {
     id: "kontorsstad",
@@ -50,8 +49,8 @@ const servicesData = [
       "Fönsterputsning (enligt avtal)",
       "Avfläckning av glaspartier och dörrar"
     ],
-    imageUrl: "https://images.pexels.com/photos/9462280/pexels-photo-9462280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&q=80",
+    heroImage: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80"
   },
   {
     id: "dodsbo",
@@ -72,8 +71,8 @@ const servicesData = [
       "Miljövänlig återvinning",
       "Dokumentation under hela processen"
     ],
-    imageUrl: "https://images.pexels.com/photos/6444266/pexels-photo-6444266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/4050318/pexels-photo-4050318.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.unsplash.com/photo-1558882224-dda166733046?auto=format&fit=crop&q=80",
+    heroImage: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&q=80"
   },
   {
     id: "demontering",
@@ -94,8 +93,8 @@ const servicesData = [
       "Utrymning av lokaler",
       "Snabb och effektiv service"
     ],
-    imageUrl: "https://images.pexels.com/photos/6474805/pexels-photo-6474805.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/1201671/pexels-photo-1201671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80",
+    heroImage: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&q=80"
   },
   {
     id: "takbyten",
@@ -116,8 +115,8 @@ const servicesData = [
       "Garanti på utfört arbete",
       "Städning och bortforsling efter avslutat arbete"
     ],
-    imageUrl: "https://images.pexels.com/photos/7214166/pexels-photo-7214166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    heroImage: "https://images.pexels.com/photos/1769349/pexels-photo-1769349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    imageUrl: "https://images.unsplash.com/photo-1622993751133-2c9132ca1df0?auto=format&fit=crop&q=80",
+    heroImage: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&q=80"
   }
 ];
 
@@ -192,7 +191,7 @@ const ServicesPage = () => {
       <HeroSection 
         title="Våra tjänster"
         subtitle="Vi erbjuder ett brett utbud av tjänster inom städ och bygg, anpassade efter dina behov"
-        imageUrl="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&q=80"
+        imageUrl="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&q=80"
       />
       
       <section className="py-20 px-6">

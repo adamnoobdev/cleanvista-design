@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, HomeIcon, Building2, Trash2, Construction, Warehouse } from 'lucide-react';
@@ -14,7 +13,7 @@ const Index = () => {
       id: "flyttstad",
       title: "Flyttstäd",
       description: "Låt oss ta hand om städningen när du flyttar så att du kan fokusera på din nya bostad.",
-      imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80",
       icon: <HomeIcon size={24} />,
       delay: 100
     },
@@ -22,7 +21,7 @@ const Index = () => {
       id: "kontorsstad",
       title: "Kontorsstäd",
       description: "Vi erbjuder professionell kontorsstädning för en fräsch och hygienisk arbetsmiljö.",
-      imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&q=80",
       icon: <Building2 size={24} />,
       delay: 200
     },
@@ -30,7 +29,7 @@ const Index = () => {
       id: "dodsbo",
       title: "Dödsbo",
       description: "Professionell och respektfull hantering av dödsbon när du behöver hjälp som mest.",
-      imageUrl: "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1558882224-dda166733046?auto=format&fit=crop&q=80",
       icon: <Warehouse size={24} />,
       delay: 300
     },
@@ -38,7 +37,7 @@ const Index = () => {
       id: "demontering",
       title: "Demontering & Bortforsling",
       description: "Vi demonterar och transporterar bort möbler, inredning eller annat du vill bli av med.",
-      imageUrl: "https://images.unsplash.com/photo-1571568154091-5d6c899a254d?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80",
       icon: <Trash2 size={24} />,
       delay: 400
     },
@@ -46,7 +45,7 @@ const Index = () => {
       id: "takbyten",
       title: "Takbyten",
       description: "Professionell installation och reparation av tak med kvalitetsmaterial och garantier.",
-      imageUrl: "https://images.unsplash.com/photo-1598443056492-3c7bc555d048?auto=format&fit=crop&q=80",
+      imageUrl: "https://images.unsplash.com/photo-1622993751133-2c9132ca1df0?auto=format&fit=crop&q=80",
       icon: <Construction size={24} />,
       delay: 500
     }
@@ -80,7 +79,7 @@ const Index = () => {
       <HeroSection 
         title="Professionella städ- och byggtjänster i Sandviken"
         subtitle="Vi erbjuder högkvalitativa tjänster inom flyttstäd, kontorsstäd, dödsbo, demontering och takbyten."
-        imageUrl="https://images.unsplash.com/photo-1613977257365-aaae5a9817ff?auto=format&fit=crop&q=80"
+        imageUrl="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80"
       />
       
       {/* About Section */}
@@ -109,7 +108,7 @@ const Index = () => {
             <div className="relative order-1 md:order-2 animate-fade-in">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1603712725038-e9334ae8f39f?auto=format&fit=crop&q=80" 
+                  src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80" 
                   alt="Bygg och Städ Sandviken Team" 
                   className="w-full h-auto rounded-2xl"
                 />

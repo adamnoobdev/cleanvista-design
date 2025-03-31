@@ -40,7 +40,7 @@ const AboutPage = () => {
       <HeroSection 
         title="Om Bygg & Städ Sandviken"
         subtitle="Lär känna oss och våra värderingar"
-        imageUrl="https://images.pexels.com/photos/8961066/pexels-photo-8961066.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        imageUrl="https://images.unsplash.com/photo-1526396160420-b4cfa88cd4a6?auto=format&fit=crop&q=80"
       />
       
       {/* Our Values */}
@@ -83,7 +83,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="animate-fade-in">
               <img 
-                src="https://images.pexels.com/photos/8092507/pexels-photo-8092507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="https://images.unsplash.com/photo-1586980368323-8ce5db4c85a0?auto=format&fit=crop&q=80" 
                 alt="Professionellt team" 
                 className="rounded-xl w-full h-auto mb-4 shadow-lg"
               />
@@ -96,7 +96,7 @@ const AboutPage = () => {
             
             <div className="animate-fade-in" style={{ animationDelay: '150ms' }}>
               <img 
-                src="https://images.pexels.com/photos/3768909/pexels-photo-3768909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="https://images.unsplash.com/photo-1567710845379-31d590262e06?auto=format&fit=crop&q=80" 
                 alt="Kvalitet" 
                 className="rounded-xl w-full h-auto mb-4 shadow-lg"
               />
@@ -109,7 +109,7 @@ const AboutPage = () => {
             
             <div className="animate-fade-in" style={{ animationDelay: '300ms' }}>
               <img 
-                src="https://images.pexels.com/photos/7641079/pexels-photo-7641079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?auto=format&fit=crop&q=80" 
                 alt="Kundservice" 
                 className="rounded-xl w-full h-auto mb-4 shadow-lg"
               />
@@ -122,7 +122,7 @@ const AboutPage = () => {
             
             <div className="animate-fade-in" style={{ animationDelay: '450ms' }}>
               <img 
-                src="https://images.pexels.com/photos/6265931/pexels-photo-6265931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80" 
                 alt="RUT-avdrag" 
                 className="rounded-xl w-full h-auto mb-4 shadow-lg"
               />
