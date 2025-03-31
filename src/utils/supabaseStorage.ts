@@ -19,18 +19,19 @@ const PLACEHOLDER = {
   icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
 };
 
-// Simplified function to get public URL directly with proper error handling
+// Function to get public URL from Supabase Storage
 async function getImageUrl(path: string): Promise<string | null> {
   try {
     // Normalize path to prevent double slashes
-    let normalizedPath = path.startsWith('/') ? path.substring(1) : path;
+    const normalizedPath = path.startsWith('/') ? path.substring(1) : path;
     
-    console.log(`Getting public URL for images/${normalizedPath}`);
+    console.log(`Getting Supabase image URL for ${normalizedPath}`);
     
-    const { data } = supabase.storage.from('images').getPublicUrl(normalizedPath);
+    // The bucket name is 'public' based on your screenshot, not 'images'
+    const { data } = supabase.storage.from('public').getPublicUrl(normalizedPath);
     
     if (!data?.publicUrl) {
-      console.error(`Failed to get public URL for images/${normalizedPath}`);
+      console.error(`Failed to get public URL for ${normalizedPath}`);
       return null;
     }
     
