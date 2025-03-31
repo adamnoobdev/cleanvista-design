@@ -9,7 +9,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Services from "./pages/Services";
 import Quote from "./pages/Quote";
-import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -41,7 +40,6 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/services/:serviceId" element={<Services />} />
             <Route path="/quote" element={<Quote />} />
-            <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

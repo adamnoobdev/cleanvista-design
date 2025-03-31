@@ -55,9 +55,6 @@ const Footer = () => {
                 <Link to="/quote" className="hover:underline transition-all">Begär offert</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:underline transition-all">Om oss</Link>
-              </li>
-              <li>
                 <Link to="/pricing" className="hover:underline transition-all">Priser</Link>
               </li>
             </ul>

@@ -28,7 +28,6 @@ const Navbar = () => {
     { name: 'Hem', path: '/' },
     { name: 'Tjänster', path: '/services' },
     { name: 'Begär offert', path: '/quote' },
-    { name: 'Om oss', path: '/about' },
     { name: 'Priser', path: '/pricing' },
   ];
 
