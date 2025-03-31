@@ -6,6 +6,11 @@ import { ArrowRight, Check } from 'lucide-react';
 import HeroSection from '@/components/HeroSection';
 import ServiceCard from '@/components/ServiceCard';
 import QuoteForm from '@/components/QuoteForm';
+import { getServiceImageUrl, getHeroImageUrl } from '@/utils/supabaseStorage';
+
+// Placeholder images
+const placeholderImage = getServiceImageUrl();
+const placeholderHero = getHeroImageUrl();
 
 // Service data with detailed content
 const servicesData = [
@@ -28,8 +33,8 @@ const servicesData = [
       "Rengöring av alla badrum inklusive avkalkning",
       "Rengöring av ventilationsdon"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80"
+    imageUrl: placeholderImage,
+    heroImage: placeholderHero
   },
   {
     id: "kontorsstad",
@@ -50,8 +55,8 @@ const servicesData = [
       "Fönsterputsning (enligt avtal)",
       "Avfläckning av glaspartier och dörrar"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&q=80"
+    imageUrl: placeholderImage,
+    heroImage: placeholderHero
   },
   {
     id: "dodsbo",
@@ -72,8 +77,8 @@ const servicesData = [
       "Miljövänlig återvinning",
       "Dokumentation under hela processen"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80"
+    imageUrl: placeholderImage,
+    heroImage: placeholderHero
   },
   {
     id: "demontering",
@@ -94,8 +99,8 @@ const servicesData = [
       "Utrymning av lokaler",
       "Snabb och effektiv service"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1532480506693-5fda68df2da2?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80"
+    imageUrl: placeholderImage,
+    heroImage: placeholderHero
   },
   {
     id: "takbyten",
@@ -116,8 +121,8 @@ const servicesData = [
       "Garanti på utfört arbete",
       "Städning och bortforsling efter avslutat arbete"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?auto=format&fit=crop&q=80",
-    heroImage: "https://images.unsplash.com/photo-1591105327764-2c01d11593cd?auto=format&fit=crop&q=80"
+    imageUrl: placeholderImage,
+    heroImage: placeholderHero
   }
 ];
 

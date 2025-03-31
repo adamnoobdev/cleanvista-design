@@ -10,6 +10,7 @@ import {
 import HeroSection from '@/components/HeroSection';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { getHeroImageUrl } from '@/utils/supabaseStorage';
 
 // Define types
 type PriceItem = {
@@ -30,6 +31,9 @@ type Price = PriceItem | PriceItemWithSubItems;
 
 const Pricing = () => {
   const [activeTab, setActiveTab] = useState("cleaning");
+  
+  // Get placeholder image for hero
+  const heroImageUrl = getHeroImageUrl();
 
   // Service price data
   const cleaningPrices: Price[] = [
@@ -99,7 +103,7 @@ const Pricing = () => {
       <HeroSection 
         title="Priser och tjänster"
         subtitle="Transparenta priser för alla våra tjänster"
-        imageUrl="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80"
+        imageUrl={heroImageUrl}
       />
       
       <section className="py-20 px-6">

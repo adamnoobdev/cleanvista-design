@@ -3,13 +3,16 @@ import { HomeIcon, Building2, Trash2, Construction, Warehouse } from 'lucide-rea
 import { ServiceData } from '@/types/services';
 import { getServiceImageUrl } from '@/utils/supabaseStorage';
 
-// Service data with Supabase Storage URLs
+// Single placeholder image for all services
+const placeholderImage = getServiceImageUrl();
+
+// Service data with placeholder images
 export const services: ServiceData[] = [
   {
     id: "flyttstad",
     title: "Flyttstäd",
     description: "Låt oss ta hand om städningen när du flyttar så att du kan fokusera på din nya bostad.",
-    imageUrl: getServiceImageUrl('flyttstad.jpg'),
+    imageUrl: placeholderImage,
     icon: HomeIcon,
     delay: 100
   },
@@ -17,7 +20,7 @@ export const services: ServiceData[] = [
     id: "kontorsstad",
     title: "Kontorsstäd",
     description: "Vi erbjuder professionell kontorsstädning för en fräsch och hygienisk arbetsmiljö.",
-    imageUrl: getServiceImageUrl('kontorsstad.jpg'),
+    imageUrl: placeholderImage,
     icon: Building2,
     delay: 200
   },
@@ -25,7 +28,7 @@ export const services: ServiceData[] = [
     id: "dodsbo",
     title: "Dödsbo",
     description: "Professionell och respektfull hantering av dödsbon när du behöver hjälp som mest.",
-    imageUrl: getServiceImageUrl('dodsbo.jpg'),
+    imageUrl: placeholderImage,
     icon: Warehouse,
     delay: 300
   },
@@ -33,7 +36,7 @@ export const services: ServiceData[] = [
     id: "demontering",
     title: "Demontering & Bortforsling",
     description: "Vi demonterar och transporterar bort möbler, inredning eller annat du vill bli av med.",
-    imageUrl: getServiceImageUrl('demontering.jpg'),
+    imageUrl: placeholderImage,
     icon: Trash2,
     delay: 400
   },
@@ -41,7 +44,7 @@ export const services: ServiceData[] = [
     id: "takbyten",
     title: "Takbyten",
     description: "Professionell installation och reparation av tak med kvalitetsmaterial och garantier.",
-    imageUrl: getServiceImageUrl('takbyten.jpg'),
+    imageUrl: placeholderImage,
     icon: Construction,
     delay: 500
   }

@@ -1,28 +1,23 @@
 
-import { supabase } from '@/integrations/supabase/client';
-
-// Get public URL for an image in Supabase Storage
-export function getImageUrl(path: string): string {
-  const { data } = supabase.storage.from('images').getPublicUrl(path);
-  return data.publicUrl;
-}
+// This file previously handled Supabase Storage image URLs
+// Now it will use placeholder images instead
 
 // Helper function to get hero image URL
-export function getHeroImageUrl(filename: string): string {
-  return getImageUrl(`hero/${filename}`);
+export function getHeroImageUrl(): string {
+  return "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80";
 }
 
 // Helper function to get service image URL
-export function getServiceImageUrl(filename: string): string {
-  return getImageUrl(`services/${filename}`);
+export function getServiceImageUrl(): string {
+  return "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80";
 }
 
 // Helper function to get about image URL
-export function getAboutImageUrl(filename: string): string {
-  return getImageUrl(`about/${filename}`);
+export function getAboutImageUrl(): string {
+  return "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80";
 }
 
 // Helper function to get icon URL
-export function getIconUrl(filename: string): string {
-  return getImageUrl(`icons/${filename}`);
+export function getIconUrl(): string {
+  return "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80";
 }

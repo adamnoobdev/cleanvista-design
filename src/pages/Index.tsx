@@ -10,8 +10,8 @@ import { testimonials } from '@/data/testimonials';
 import { getHeroImageUrl } from '@/utils/supabaseStorage';
 
 const Index = () => {
-  // Use Supabase Storage URL for hero image
-  const heroImageUrl = getHeroImageUrl('main-hero.jpg');
+  // Use placeholder hero image
+  const heroImageUrl = getHeroImageUrl();
   
   return (
     <div className="page-transition">

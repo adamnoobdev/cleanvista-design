@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { getAboutImageUrl } from '@/utils/supabaseStorage';
 
-// Get the team image from Supabase Storage
-const teamImageUrl = getAboutImageUrl('team.jpg');
+// Get a placeholder image
+const teamImageUrl = getAboutImageUrl();
 
 const AboutSection = () => {
   return (
@@ -23,13 +23,6 @@ const AboutSection = () => {
               Vårt mål är att överträffa dina förväntningar genom att leverera tjänster av högsta kvalitet, 
               och vi är stolta över vårt goda rykte som byggts på nöjda kunders rekommendationer.
             </p>
-            <Link 
-              to="/about" 
-              className="inline-flex items-center text-primary font-medium group"
-            >
-              Läs mer om oss
-              <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
-            </Link>
           </div>
           <div className="relative order-1 md:order-2 animate-fade-in">
             <div className="rounded-2xl overflow-hidden shadow-xl">
