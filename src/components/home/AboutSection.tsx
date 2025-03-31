@@ -3,6 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
+// Importera team-bild från assets-mappen
+import teamImage from '@/assets/images/about/team.jpg';
+
 const AboutSection = () => {
   return (
     <section className="py-20 px-6">
@@ -30,7 +33,7 @@ const AboutSection = () => {
           <div className="relative order-1 md:order-2 animate-fade-in">
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80" 
+                src={teamImage} 
                 alt="Bygg och Städ Sandviken Team" 
                 className="w-full h-auto rounded-2xl"
               />

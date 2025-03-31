@@ -8,6 +8,9 @@ import QuoteSection from '@/components/home/QuoteSection';
 import { services } from '@/data/services';
 import { testimonials } from '@/data/testimonials';
 
+// Importera hero-bild från assets-mappen
+import heroImage from '@/assets/images/hero/main-hero.jpg';
+
 const Index = () => {
   return (
     <div className="page-transition">
@@ -15,7 +18,7 @@ const Index = () => {
       <HeroSection 
         title="Professionella städ- och byggtjänster i Sandviken"
         subtitle="Vi erbjuder högkvalitativa tjänster inom flyttstäd, kontorsstäd, dödsbo, demontering och takbyten."
-        imageUrl="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80"
+        imageUrl={heroImage}
       />
       
       {/* About Section */}
