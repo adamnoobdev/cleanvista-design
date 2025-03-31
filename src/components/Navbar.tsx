@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -46,14 +45,13 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold text-primary flex items-center space-x-3">
           <img 
-            src="https://xzzytdbscfivjkiqiwin.supabase.co/storage/v1/object/public/images/logotyp.jpg" 
+            src="https://xzzytdbscfivjkiqiwin.supabase.co/storage/v1/object/public/images//Logotyp.png" 
             alt="Bygg & Städ i toppklass Sandviken" 
             className="h-10 w-auto"
           />
           <span className="text-2xl hidden md:inline">Bygg & Städ i toppklass Sandviken</span>
         </Link>
         
-        {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
           {navItems.map((item) => (
             <Link
@@ -71,7 +69,6 @@ const Navbar = () => {
           ))}
         </div>
         
-        {/* Mobile Menu Button */}
         <button 
           className="md:hidden text-foreground" 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -81,7 +78,6 @@ const Navbar = () => {
         </button>
       </div>
       
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-md mt-3 mx-6 rounded-md overflow-hidden">
           <div className="flex flex-col py-4">
