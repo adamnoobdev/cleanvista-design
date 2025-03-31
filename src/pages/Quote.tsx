@@ -11,7 +11,7 @@ const QuotePage = () => {
       <HeroSection 
         title="Begär en kostnadsfri offert"
         subtitle="Få en skräddarsydd lösning för ditt projekt med våra expertutlåtanden och prisuppskattningar"
-        imageUrl="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80"
+        useColorBackground={true}
       />
       
       <section className="py-20 px-6">
@@ -22,7 +22,7 @@ const QuotePage = () => {
               
               <div className="space-y-8">
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-sm flex items-center justify-center flex-shrink-0 font-bold">1</div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Fyll i formuläret</h3>
                     <p className="text-muted-foreground">
@@ -33,7 +33,7 @@ const QuotePage = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-sm flex items-center justify-center flex-shrink-0 font-bold">2</div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Vi kontaktar dig</h3>
                     <p className="text-muted-foreground">
@@ -77,7 +77,7 @@ const QuotePage = () => {
                 </div>
               </div>
               
-              <div className="mt-12 p-6 bg-secondary rounded-xl">
+              <div className="mt-12 p-6 bg-secondary rounded-sm">
                 <h3 className="text-xl font-semibold mb-4">Vanliga frågor</h3>
                 <div className="space-y-4">
                   <div>
@@ -106,7 +106,7 @@ const QuotePage = () => {
             <div className="animate-fade-in" style={{ animationDelay: '200ms' }}>
               <QuoteForm />
               
-              <div className="mt-8 p-6 glass rounded-xl">
+              <div className="mt-8 p-6 bg-white border border-border shadow-sm rounded-sm">
                 <h3 className="text-lg font-semibold mb-3">Föredrar du att prata med oss direkt?</h3>
                 <p className="text-muted-foreground mb-4">
                   Ring oss på <a href="tel:+46701234567" className="text-primary font-medium">070-123 45 67</a> eller 

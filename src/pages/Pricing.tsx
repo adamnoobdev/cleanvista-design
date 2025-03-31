@@ -1,42 +1,16 @@
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import HeroSection from '@/components/HeroSection';
-import { getHeroImageUrl } from '@/utils/supabaseStorage';
 
 const PricingPage = () => {
-  const [heroImage, setHeroImage] = useState<string>("https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&q=80");
-  const [loading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    const loadImage = async () => {
-      try {
-        const imageUrl = await getHeroImageUrl();
-        setHeroImage(imageUrl);
-      } catch (error) {
-        console.error("Error loading hero image:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    loadImage();
-  }, []);
-  
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-  
   return (
     <div className="page-transition">
       <HeroSection
         title="Prislista"
         subtitle="Våra konkurrenskraftiga priser för städ- och byggtjänster"
-        imageUrl={heroImage}
+        useColorBackground={true}
       />
 
       <section className="py-20 px-6">
@@ -50,8 +24,8 @@ const PricingPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Example Pricing Cards */}
-            <div className="glass rounded-2xl p-6 animate-fade-in">
+            {/* Pricing Cards */}
+            <div className="bg-white border border-border shadow-sm rounded-sm p-6 animate-fade-in">
               <h3 className="text-xl font-semibold mb-4">Flyttstädning</h3>
               <p className="text-muted-foreground mb-4">
                 Grundlig städning av hela bostaden inför flytt.
@@ -76,14 +50,14 @@ const PricingPage = () => {
               </ul>
               <Link
                 to="/quote"
-                className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+                className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
               >
                 Begär offert
                 <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
               </Link>
             </div>
 
-            <div className="glass rounded-2xl p-6 animate-fade-in">
+            <div className="bg-white border border-border shadow-sm rounded-sm p-6 animate-fade-in">
               <h3 className="text-xl font-semibold mb-4">Kontorsstädning</h3>
               <p className="text-muted-foreground mb-4">
                 Regelbunden städning för en ren och trivsam arbetsmiljö.
@@ -108,14 +82,14 @@ const PricingPage = () => {
               </ul>
               <Link
                 to="/quote"
-                className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+                className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
               >
                 Begär offert
                 <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
               </Link>
             </div>
 
-            <div className="glass rounded-2xl p-6 animate-fade-in">
+            <div className="bg-white border border-border shadow-sm rounded-sm p-6 animate-fade-in">
               <h3 className="text-xl font-semibold mb-4">Takbyte</h3>
               <p className="text-muted-foreground mb-4">
                 Professionellt takbyte med kvalitetsmaterial och garanti.
@@ -139,7 +113,7 @@ const PricingPage = () => {
               </ul>
               <Link
                 to="/quote"
-                className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+                className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
               >
                 Begär offert
                 <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
@@ -147,7 +121,7 @@ const PricingPage = () => {
             </div>
           </div>
 
-          <div className="mt-20 bg-secondary p-8 rounded-2xl animate-fade-in">
+          <div className="mt-20 bg-secondary p-8 rounded-sm animate-fade-in">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-4">
@@ -159,18 +133,32 @@ const PricingPage = () => {
                 </p>
                 <Link
                   to="/quote"
-                  className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+                  className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
                 >
                   Begär offert
                   <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
                 </Link>
               </div>
-              <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80"
-                  alt="Contact us"
-                  className="rounded-xl"
-                />
+              <div className="bg-white p-6 rounded-sm">
+                <h4 className="text-xl font-semibold mb-4">Våra fördelar</h4>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <Check className="text-primary mt-1 mr-2" size={18} />
+                    <span>Professionell personal med gedigen erfarenhet</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="text-primary mt-1 mr-2" size={18} />
+                    <span>Kvalitetsgaranti på alla utförda arbeten</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="text-primary mt-1 mr-2" size={18} />
+                    <span>Snabb och tillförlitlig service</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="text-primary mt-1 mr-2" size={18} />
+                    <span>Konkurrenskraftiga priser</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

@@ -18,12 +18,20 @@ const ServiceCard = ({ id, title, description, imageUrl, icon: Icon }: ServiceCa
     <div 
       className="bg-white border border-border shadow-sm rounded-sm overflow-hidden transition-all duration-200 hover:shadow-md group flex flex-col h-full"
     >
-      <div className="relative h-60 overflow-hidden">
-        <img 
-          src={imageUrl} 
-          alt={title} 
-          className="w-full h-full object-cover"
-        />
+      <div className="relative h-48 overflow-hidden bg-secondary">
+        {imageUrl && (
+          <img 
+            src={imageUrl} 
+            alt={title} 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              // If image fails to load, add a class to the parent for styling
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              (target.parentNode as HTMLElement).classList.add('bg-secondary');
+            }}
+          />
+        )}
       </div>
       <div className="p-6 flex flex-col flex-grow">
         {Icon && <Icon className="text-primary mb-3" size={24} />}

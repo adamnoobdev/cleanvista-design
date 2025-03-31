@@ -8,16 +8,15 @@ import { ServiceDetail } from '@/types/services';
 
 interface ServicesListViewProps {
   servicesData: ServiceDetail[];
-  heroImageUrl: string;
 }
 
-const ServicesListView: React.FC<ServicesListViewProps> = ({ servicesData, heroImageUrl }) => {
+const ServicesListView: React.FC<ServicesListViewProps> = ({ servicesData }) => {
   return (
     <div className="page-transition">
       <HeroSection 
         title="Våra tjänster"
         subtitle="Vi erbjuder ett brett utbud av tjänster inom städ och bygg, anpassade efter dina behov"
-        imageUrl={heroImageUrl}
+        useColorBackground={true}
       />
       
       <section className="py-20 px-6">
@@ -43,7 +42,7 @@ const ServicesListView: React.FC<ServicesListViewProps> = ({ servicesData, heroI
             ))}
           </div>
           
-          <div className="mt-20 bg-secondary p-8 rounded-2xl animate-fade-in">
+          <div className="mt-20 bg-secondary p-8 rounded-sm animate-fade-in">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-4">Behöver du en anpassad lösning?</h3>
@@ -53,18 +52,28 @@ const ServicesListView: React.FC<ServicesListViewProps> = ({ servicesData, heroI
                 </p>
                 <Link 
                   to="/quote" 
-                  className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+                  className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
                 >
                   Begär offert
                   <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
                 </Link>
               </div>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&q=80" 
-                  alt="Custom services" 
-                  className="rounded-xl"
-                />
+              <div className="bg-white p-6 rounded-sm">
+                <h4 className="text-xl font-semibold mb-3">Våra mest populära tjänster</h4>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                    <span>Flyttstädning med kvalitetsgaranti</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                    <span>Regelbunden kontorsstädning</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                    <span>Takbyten och reparationer</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

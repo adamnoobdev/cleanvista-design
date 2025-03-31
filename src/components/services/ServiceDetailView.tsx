@@ -16,12 +16,12 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service }) => {
       <HeroSection 
         title={service.title}
         subtitle={service.shortDescription}
-        imageUrl={service.heroImage}
+        useColorBackground={true}
       />
       
       <section className="py-20 px-6">
         <div className="container mx-auto max-w-4xl">
-          <div className="glass rounded-2xl p-8 mb-12 animate-fade-in">
+          <div className="bg-white border border-border shadow-sm rounded-sm p-8 mb-12 animate-fade-in">
             <div className="prose max-w-none mb-8" dangerouslySetInnerHTML={{ __html: service.fullDescription }} />
             
             <h3 className="text-xl font-semibold mb-4">Vad ingår i vår tjänst:</h3>
