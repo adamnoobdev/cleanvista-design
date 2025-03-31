@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="flex-shrink-0" />
-                <a href="tel:+46701234567" className="hover:underline transition-all">070-123 45 67</a>
+                <a href="tel:+46725302323" className="hover:underline transition-all">072-530 23 23</a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="flex-shrink-0" />
