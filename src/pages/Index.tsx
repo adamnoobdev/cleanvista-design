@@ -5,6 +5,7 @@ import AboutSection from '@/components/home/AboutSection';
 import ServicesSection from '@/components/home/ServicesSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import QuoteSection from '@/components/home/QuoteSection';
+import ContactSection from '@/components/home/ContactSection';
 import { getServicesData } from '@/data/services';
 import { testimonials } from '@/data/testimonials';
 import { getHeroImageUrl } from '@/utils/supabaseStorage';
@@ -86,6 +87,9 @@ const Index = () => {
       
       {/* Testimonials Section */}
       <TestimonialsSection testimonials={testimonials} />
+      
+      {/* Contact Section */}
+      <ContactSection />
       
       {/* Quote Section */}
       <QuoteSection />
