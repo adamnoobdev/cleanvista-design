@@ -22,10 +22,10 @@ const PLACEHOLDER = {
 // Helper function to get public URL for database images
 async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
   try {
-    const { data, error } = await supabase.storage.from(bucket).getPublicUrl(path);
+    const { data } = await supabase.storage.from(bucket).getPublicUrl(path);
     
-    if (error) {
-      console.error(`Error getting public URL for ${bucket}/${path}:`, error);
+    if (!data || !data.publicUrl) {
+      console.error(`Error getting public URL for ${bucket}/${path}: No public URL returned`);
       return null;
     }
     
