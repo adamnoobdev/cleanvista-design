@@ -19,26 +19,26 @@ const PLACEHOLDER = {
   icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
 };
 
-// Helper function to create bucket if it doesn't exist
-async function ensureBucketExists(bucketName: string): Promise<boolean> {
+// Helper function to check bucket existence
+async function checkBucketExists(bucketName: string): Promise<boolean> {
   try {
-    // Check if bucket exists
-    const { data: buckets, error: bucketError } = await supabase.storage.listBuckets();
+    console.log(`Checking if bucket "${bucketName}" exists...`);
     
-    if (bucketError) {
-      console.error('Error checking buckets:', bucketError);
+    // Attempt to list files in the bucket - this is a more reliable way to check
+    // if the bucket exists and if we have access to it
+    const { data, error } = await supabase.storage
+      .from(bucketName)
+      .list();
+      
+    if (error) {
+      console.error(`Error checking bucket "${bucketName}":`, error.message);
       return false;
     }
     
-    // If the bucket doesn't exist, try to create it
-    if (!buckets || !buckets.some(b => b.name === bucketName)) {
-      console.log(`Bucket "${bucketName}" does not exist. Using local assets instead.`);
-      return false;
-    }
-    
+    console.log(`Successfully accessed bucket "${bucketName}" with ${data?.length || 0} files`);
     return true;
   } catch (e) {
-    console.error(`Failed to ensure bucket "${bucketName}" exists:`, e);
+    console.error(`Exception when checking bucket "${bucketName}":`, e);
     return false;
   }
 }
@@ -47,9 +47,10 @@ async function ensureBucketExists(bucketName: string): Promise<boolean> {
 async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
   try {
     // Check if bucket exists first
-    const bucketExists = await ensureBucketExists(bucket);
+    const bucketExists = await checkBucketExists(bucket);
     
     if (!bucketExists) {
+      console.log(`Using local assets for ${bucket}/${path} because bucket doesn't exist or is inaccessible`);
       return null;
     }
     
@@ -68,6 +69,7 @@ async function getPublicUrl(bucket: string, path: string): Promise<string | null
         console.warn(`Image at ${data.publicUrl} returned status ${response.status}`);
         return null;
       }
+      console.log(`Successfully verified image at ${data.publicUrl}`);
     } catch (e) {
       console.warn(`Could not access image at ${data.publicUrl}:`, e);
       return null;
