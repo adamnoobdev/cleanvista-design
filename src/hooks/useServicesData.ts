@@ -1,17 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { getServiceImageUrl, getHeroImageUrl } from '@/utils/supabaseStorage';
-
-// Create service data interface
-export interface ServiceDetail {
-  id: string;
-  title: string;
-  shortDescription: string;
-  fullDescription: string;
-  features: string[];
-  imageUrl: string;
-  heroImage: string;
-}
+import { ServiceDetail } from '@/types/services';
 
 export const useServicesData = () => {
   const [servicesData, setServicesData] = useState<ServiceDetail[]>([]);
