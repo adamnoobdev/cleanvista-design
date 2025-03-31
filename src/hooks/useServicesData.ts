@@ -12,6 +12,9 @@ export const useServicesData = () => {
   useEffect(() => {
     const loadServiceData = async () => {
       try {
+        setLoading(true);
+        console.log("Loading services data...");
+        
         // Base service data
         const baseServices = [
           {
@@ -118,12 +121,16 @@ export const useServicesData = () => {
         
         // Get hero image URL
         const heroImg = await getHeroImageUrl();
+        console.log("Hero image URL:", heroImg);
         setHeroImageUrl(heroImg);
         
         // Load images for all services
+        console.log("Loading images for all services...");
         const servicesWithImages = await Promise.all(
           baseServices.map(async (service) => {
+            console.log(`Loading image for service: ${service.id}`);
             const serviceImageUrl = await getServiceImageUrl(service.id);
+            console.log(`Service ${service.id} image URL:`, serviceImageUrl);
             return { 
               ...service, 
               imageUrl: serviceImageUrl,
@@ -132,6 +139,7 @@ export const useServicesData = () => {
           })
         );
         
+        console.log("Services with images:", servicesWithImages);
         setServicesData(servicesWithImages);
       } catch (error) {
         console.error("Error loading service data:", error);
