@@ -1,5 +1,6 @@
 
 // This file handles image URLs with fallbacks to placeholder images
+import { supabase } from "@/integrations/supabase/client";
 
 // Import local assets if they exist
 import mainHeroImg from '@/assets/images/hero/main-hero.jpg?url';
@@ -18,23 +19,47 @@ const PLACEHOLDER = {
   icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
 };
 
-// Helper function to get hero image URL
-export function getHeroImageUrl(): string {
+// Helper function to get public URL for database images
+async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
   try {
-    // Check if local asset exists
+    const { data, error } = await supabase.storage.from(bucket).getPublicUrl(path);
+    
+    if (error) {
+      console.error(`Error getting public URL for ${bucket}/${path}:`, error);
+      return null;
+    }
+    
+    return data.publicUrl;
+  } catch (e) {
+    console.error(`Failed to get public URL for ${bucket}/${path}:`, e);
+    return null;
+  }
+}
+
+// Helper function to get hero image URL
+export async function getHeroImageUrl(): Promise<string> {
+  try {
+    // Try to get from Supabase storage
+    const dbImage = await getPublicUrl('images', 'hero/main-hero.jpg');
+    if (dbImage) return dbImage;
+    
+    // Fall back to local asset
     if (mainHeroImg) return mainHeroImg;
   } catch (e) {
-    // If import fails, return placeholder
     console.log("Hero image not found, using placeholder");
   }
   return PLACEHOLDER.hero;
 }
 
 // Helper function to get service image URL by type
-export function getServiceImageUrl(type?: string): string {
+export async function getServiceImageUrl(type?: string): Promise<string> {
   try {
-    // Return specific service image if type is provided
+    // Try to get from Supabase storage if type is provided
     if (type) {
+      const dbImage = await getPublicUrl('images', `services/${type}.jpg`);
+      if (dbImage) return dbImage;
+      
+      // Fall back to local assets
       switch (type.toLowerCase()) {
         case 'flyttstad':
           if (flyttstadImg) return flyttstadImg;
@@ -54,19 +79,21 @@ export function getServiceImageUrl(type?: string): string {
       }
     }
   } catch (e) {
-    // If import fails, return placeholder
     console.log(`Service image ${type || ''} not found, using placeholder`);
   }
   return PLACEHOLDER.service;
 }
 
 // Helper function to get about image URL
-export function getAboutImageUrl(): string {
+export async function getAboutImageUrl(): Promise<string> {
   try {
-    // Check if local asset exists
+    // Try to get from Supabase storage
+    const dbImage = await getPublicUrl('images', 'about/team.jpg');
+    if (dbImage) return dbImage;
+    
+    // Fall back to local asset
     if (teamImg) return teamImg;
   } catch (e) {
-    // If import fails, return placeholder
     console.log("About image not found, using placeholder");
   }
   return PLACEHOLDER.about;

@@ -1,17 +1,47 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/home/AboutSection';
 import ServicesSection from '@/components/home/ServicesSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import QuoteSection from '@/components/home/QuoteSection';
-import { services } from '@/data/services';
+import { getServicesData } from '@/data/services';
 import { testimonials } from '@/data/testimonials';
 import { getHeroImageUrl } from '@/utils/supabaseStorage';
 
 const Index = () => {
-  // Use hero image with fallback
-  const heroImageUrl = getHeroImageUrl();
+  // State for storing images and services
+  const [heroImageUrl, setHeroImageUrl] = useState<string>("");
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  // Load images and data on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        // Load hero image
+        const heroImg = await getHeroImageUrl();
+        setHeroImageUrl(heroImg);
+        
+        // Load services with images
+        const servicesData = await getServicesData();
+        setServices(servicesData);
+      } catch (error) {
+        console.error("Error loading data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadData();
+  }, []);
+  
+  // Show a simple loading state while images are loading
+  if (loading) {
+    return <div className="flex items-center justify-center h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+    </div>;
+  }
   
   return (
     <div className="page-transition">

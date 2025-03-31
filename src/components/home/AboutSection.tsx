@@ -1,13 +1,28 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { getAboutImageUrl } from '@/utils/supabaseStorage';
 
-// Get about image with fallback
-const teamImageUrl = getAboutImageUrl();
-
 const AboutSection = () => {
+  const [teamImageUrl, setTeamImageUrl] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const loadImage = async () => {
+      try {
+        const imageUrl = await getAboutImageUrl();
+        setTeamImageUrl(imageUrl);
+      } catch (error) {
+        console.error("Error loading about image:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadImage();
+  }, []);
+  
   return (
     <section className="py-20 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -26,11 +41,17 @@ const AboutSection = () => {
           </div>
           <div className="relative order-1 md:order-2 animate-fade-in">
             <div className="rounded-2xl overflow-hidden shadow-xl">
-              <img 
-                src={teamImageUrl} 
-                alt="Bygg och Städ Sandviken Team" 
-                className="w-full h-auto rounded-2xl"
-              />
+              {loading ? (
+                <div className="w-full h-64 bg-muted flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+                </div>
+              ) : (
+                <img 
+                  src={teamImageUrl} 
+                  alt="Bygg och Städ Sandviken Team" 
+                  className="w-full h-auto rounded-2xl"
+                />
+              )}
             </div>
             <div className="glass absolute -bottom-6 -left-6 px-6 py-4 rounded-xl shadow-lg max-w-xs">
               <p className="font-medium text-lg">15+ års erfarenhet</p>
