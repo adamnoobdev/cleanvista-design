@@ -6,6 +6,6 @@ export interface ServiceData {
   title: string;
   description: string;
   imageUrl: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
   delay: number;
 }

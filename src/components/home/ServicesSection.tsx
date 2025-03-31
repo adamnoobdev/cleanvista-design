@@ -30,6 +30,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
                 title={service.title}
                 description={service.description}
                 imageUrl={service.imageUrl}
+                icon={service.icon}
               />
             </div>
           ))}

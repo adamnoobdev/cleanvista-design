@@ -2,16 +2,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 interface ServiceCardProps {
   id: string;
   title: string;
   description: string;
   imageUrl: string;
+  icon?: LucideIcon;
   delay?: number;
 }
 
-const ServiceCard = ({ id, title, description, imageUrl }: ServiceCardProps) => {
+const ServiceCard = ({ id, title, description, imageUrl, icon: Icon }: ServiceCardProps) => {
   return (
     <div 
       className="bg-white border border-border shadow-sm rounded-md overflow-hidden transition-all duration-200 hover:shadow-md group flex flex-col h-full"
@@ -24,6 +26,7 @@ const ServiceCard = ({ id, title, description, imageUrl }: ServiceCardProps) => 
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">
+        {Icon && <Icon className="text-primary mb-3" size={24} />}
         <h3 className="text-xl font-semibold mb-3">{title}</h3>
         <p className="text-muted-foreground mb-5 flex-grow">{description}</p>
         <Link 
