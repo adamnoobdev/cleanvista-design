@@ -38,7 +38,7 @@ const AboutSection = () => {
             </p>
           </div>
           <div className="relative order-1 md:order-2">
-            <div className="rounded-sm overflow-hidden shadow-md">
+            <div className="rounded-sm overflow-hidden shadow-md max-w-sm mx-auto">
               {loading ? (
                 <div className="w-full h-64 bg-muted flex items-center justify-center">
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
