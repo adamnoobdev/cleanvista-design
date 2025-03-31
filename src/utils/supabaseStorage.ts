@@ -19,53 +19,19 @@ const PLACEHOLDER = {
   icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
 };
 
-// Helper function to check if the bucket exists
-async function checkBucketExists(bucketName: string): Promise<boolean> {
-  try {
-    console.log(`Checking if bucket "${bucketName}" exists...`);
-    
-    // Get bucket details directly
-    const { data, error } = await supabase.storage.getBucket(bucketName);
-    
-    if (error) {
-      console.error(`Error checking bucket "${bucketName}":`, error.message);
-      return false;
-    }
-    
-    console.log(`Successfully verified bucket "${bucketName}" exists`, data);
-    return true;
-  } catch (e) {
-    console.error(`Exception when checking bucket "${bucketName}":`, e);
-    return false;
-  }
-}
-
-// Fixed function to correctly normalize paths without double slashes
-function normalizePath(path: string): string {
-  // Remove leading slash if present
-  if (path.startsWith('/')) {
-    path = path.substring(1);
-  }
-  
-  return path;
-}
-
-// Helper function to get public URL for database images
+// Bypass bucket existence check and go straight to getPublicUrl
+// This is more reliable than trying to check if the bucket exists
 async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
   try {
     // Normalize path to prevent double slashes
-    const normalizedPath = normalizePath(path);
-    console.log(`Getting public URL for ${bucket}/${normalizedPath}`);
-    
-    // Check if bucket exists first
-    const bucketExists = await checkBucketExists(bucket);
-    
-    if (!bucketExists) {
-      console.log(`Using local assets for ${bucket}/${normalizedPath} because bucket doesn't exist or is inaccessible`);
-      return null;
+    let normalizedPath = path;
+    if (normalizedPath.startsWith('/')) {
+      normalizedPath = normalizedPath.substring(1);
     }
     
-    // Bucket exists, try to get the public URL
+    console.log(`Getting public URL for ${bucket}/${normalizedPath}`);
+
+    // Directly try to get the public URL without checking bucket existence
     const { data } = await supabase.storage.from(bucket).getPublicUrl(normalizedPath);
     
     if (!data || !data.publicUrl) {
@@ -80,59 +46,48 @@ async function getPublicUrl(bucket: string, path: string): Promise<string | null
       const response = await fetch(data.publicUrl, { method: 'HEAD' });
       if (!response.ok) {
         console.warn(`Image at ${data.publicUrl} returned status ${response.status}`);
-        return null;
+        return fallbackToLocalAsset(bucket, normalizedPath);
       }
       console.log(`Successfully verified image at ${data.publicUrl}`);
+      return data.publicUrl;
     } catch (e) {
       console.warn(`Could not access image at ${data.publicUrl}:`, e);
-      return null;
+      return fallbackToLocalAsset(bucket, normalizedPath);
     }
-    
-    return data.publicUrl;
   } catch (e) {
     console.error(`Failed to get public URL for ${bucket}/${path}:`, e);
-    return null;
+    return fallbackToLocalAsset(bucket, path);
   }
 }
 
-// Helper function to get hero image URL
-export async function getHeroImageUrl(): Promise<string> {
-  console.log("Fetching hero image...");
-  try {
-    // Try to get from Supabase storage - fixed path
-    const dbImage = await getPublicUrl('images', 'hero/main-hero.jpg');
-    if (dbImage) {
-      console.log("Successfully loaded hero image from Supabase:", dbImage);
-      return dbImage;
-    }
-    
-    // Fall back to local asset
+// Helper function to fallback to local assets
+function fallbackToLocalAsset(bucket: string, path: string): string | null {
+  console.log(`Falling back to local assets for ${bucket}/${path}`);
+  
+  // For hero images
+  if (path.includes('hero/main-hero.jpg')) {
     if (mainHeroImg) {
       console.log("Using local hero image:", mainHeroImg);
       return mainHeroImg;
     }
-  } catch (e) {
-    console.error("Hero image fetch error:", e);
+    return PLACEHOLDER.hero;
   }
-  console.log("Using placeholder hero image");
-  return PLACEHOLDER.hero;
-}
-
-// Helper function to get service image URL by type
-export async function getServiceImageUrl(type?: string): Promise<string> {
-  console.log(`Fetching service image for: ${type || 'unknown'}`);
-  try {
-    // Try to get from Supabase storage if type is provided
-    if (type) {
-      const dbImage = await getPublicUrl('images', `services/${type}.jpg`);
-      if (dbImage) {
-        console.log(`Successfully loaded service image for ${type} from Supabase:`, dbImage);
-        return dbImage;
-      }
-      
-      // Fall back to local assets
+  
+  // For about images
+  if (path.includes('about/team.jpg')) {
+    if (teamImg) {
+      console.log("Using local about image:", teamImg);
+      return teamImg;
+    }
+    return PLACEHOLDER.about;
+  }
+  
+  // For service images
+  if (path.includes('services/')) {
+    const serviceName = path.split('/').pop()?.replace('.jpg', '');
+    if (serviceName) {
       let localImage = null;
-      switch (type.toLowerCase()) {
+      switch (serviceName) {
         case 'flyttstad':
           localImage = flyttstadImg;
           break;
@@ -151,15 +106,59 @@ export async function getServiceImageUrl(type?: string): Promise<string> {
       }
       
       if (localImage) {
-        console.log(`Using local image for ${type}:`, localImage);
+        console.log(`Using local image for ${serviceName}:`, localImage);
         return localImage;
+      }
+    }
+    return PLACEHOLDER.service;
+  }
+  
+  // Default placeholder
+  return PLACEHOLDER.icon;
+}
+
+// Helper function to get hero image URL
+export async function getHeroImageUrl(): Promise<string> {
+  console.log("Fetching hero image...");
+  try {
+    // Try to get from Supabase storage
+    const dbImage = await getPublicUrl('images', 'hero/main-hero.jpg');
+    if (dbImage) {
+      console.log("Successfully loaded hero image from Supabase:", dbImage);
+      return dbImage;
+    }
+  } catch (e) {
+    console.error("Hero image fetch error:", e);
+  }
+  
+  // Already handled in fallback, but just in case
+  if (mainHeroImg) {
+    console.log("Using local hero image:", mainHeroImg);
+    return mainHeroImg;
+  }
+  
+  console.log("Using placeholder hero image");
+  return PLACEHOLDER.hero;
+}
+
+// Helper function to get service image URL by type
+export async function getServiceImageUrl(type?: string): Promise<string> {
+  console.log(`Fetching service image for: ${type || 'unknown'}`);
+  try {
+    // Try to get from Supabase storage if type is provided
+    if (type) {
+      const dbImage = await getPublicUrl('images', `services/${type}.jpg`);
+      if (dbImage) {
+        console.log(`Successfully loaded service image for ${type} from Supabase:`, dbImage);
+        return dbImage;
       }
     }
   } catch (e) {
     console.error(`Service image fetch error for ${type || 'unknown'}:`, e);
   }
-  console.log(`Using placeholder for service image ${type || 'unknown'}`);
-  return PLACEHOLDER.service;
+  
+  // Fallback already handled in getPublicUrl, but just in case
+  return fallbackToLocalAsset('images', `services/${type}.jpg`) || PLACEHOLDER.service;
 }
 
 // Helper function to get about image URL
@@ -172,15 +171,16 @@ export async function getAboutImageUrl(): Promise<string> {
       console.log("Successfully loaded about image from Supabase:", dbImage);
       return dbImage;
     }
-    
-    // Fall back to local asset
-    if (teamImg) {
-      console.log("Using local about image:", teamImg);
-      return teamImg;
-    }
   } catch (e) {
     console.error("About image fetch error:", e);
   }
+  
+  // Fallback already handled in getPublicUrl, but just in case
+  if (teamImg) {
+    console.log("Using local about image:", teamImg);
+    return teamImg;
+  }
+  
   console.log("Using placeholder about image");
   return PLACEHOLDER.about;
 }
