@@ -4,10 +4,12 @@ import { Phone, Mail } from 'lucide-react';
 import { getAboutImageUrl } from '@/utils/supabaseStorage';
 import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ContactSection = () => {
   const [teamImageUrl, setTeamImageUrl] = useState<string>("");
   const [loading, setLoading] = useState(true);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const loadImage = async () => {
@@ -28,7 +30,8 @@ const ContactSection = () => {
     <section className="py-12 px-6 bg-secondary">
       <div className="container mx-auto max-w-5xl">
         <div className="flex flex-col md:flex-row gap-8 items-center">
-          <div className="md:w-2/5 lg:w-1/3">
+          {/* Only conditionally render the wrapper if not on mobile or explicitly show it on mobile */}
+          <div className={`${isMobile ? 'block w-full max-w-[200px] mx-auto mb-4' : 'md:w-2/5 lg:w-1/3'}`}>
             <div className="rounded-sm overflow-hidden shadow-md">
               {loading ? (
                 <div className="w-full h-48 bg-muted flex items-center justify-center">
@@ -46,7 +49,7 @@ const ContactSection = () => {
             </div>
           </div>
           
-          <div className="md:w-3/5 lg:w-2/3">
+          <div className={`${isMobile ? 'w-full' : 'md:w-3/5 lg:w-2/3'}`}>
             <span className="text-sm font-semibold uppercase tracking-wider text-primary">Kontakta oss</span>
             <h2 className="text-2xl font-bold mt-2 mb-4">Prata med Benjamin direkt</h2>
             <p className="text-muted-foreground mb-6 text-sm">
