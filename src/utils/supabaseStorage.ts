@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 // Import local assets if they exist
 import mainHeroImg from '@/assets/images/hero/main-hero.jpg?url';
 import teamImg from '@/assets/images/about/team.jpg?url';
+import partnerImg from '@/assets/images/about/partner.jpg?url';
 import flyttstadImg from '@/assets/images/services/flyttstad.jpg?url';
 import kontorsstadImg from '@/assets/images/services/kontorsstad.jpg?url';
 import dodsboImg from '@/assets/images/services/dodsbo.jpg?url';
@@ -61,6 +62,15 @@ function fallbackToLocalAsset(path: string): string {
     if (teamImg) {
       console.log("Using local about image:", teamImg);
       return teamImg;
+    }
+    return PLACEHOLDER.about;
+  }
+  
+  // For partner image
+  if (path.includes('about/partner.jpg')) {
+    if (partnerImg) {
+      console.log("Using local partner image:", partnerImg);
+      return partnerImg;
     }
     return PLACEHOLDER.about;
   }
@@ -151,6 +161,22 @@ export async function getAboutImageUrl(): Promise<string> {
   }
   
   return fallbackToLocalAsset('about/team.jpg');
+}
+
+// Helper function to get partner image URL
+export async function getPartnerImageUrl(): Promise<string> {
+  console.log("Fetching partner image...");
+  try {
+    // Try to get from Supabase storage
+    const dbImage = await getImageUrl('partner.jpg');
+    if (dbImage) {
+      return dbImage;
+    }
+  } catch (e) {
+    console.error("Partner image fetch error:", e);
+  }
+  
+  return fallbackToLocalAsset('about/partner.jpg');
 }
 
 // Helper function to get icon URL

@@ -2,19 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { getAboutImageUrl } from '@/utils/supabaseStorage';
+import { getPartnerImageUrl } from '@/utils/supabaseStorage';
 
 const AboutSection = () => {
-  const [teamImageUrl, setTeamImageUrl] = useState<string>("");
+  const [partnerImageUrl, setPartnerImageUrl] = useState<string>("");
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const imageUrl = await getAboutImageUrl();
-        setTeamImageUrl(imageUrl);
+        const imageUrl = await getPartnerImageUrl();
+        setPartnerImageUrl(imageUrl);
       } catch (error) {
-        console.error("Error loading about image:", error);
+        console.error("Error loading partner image:", error);
       } finally {
         setLoading(false);
       }
@@ -47,8 +47,8 @@ const AboutSection = () => {
                 </div>
               ) : (
                 <img 
-                  src={teamImageUrl} 
-                  alt="Bygg och Städ Sandviken Team" 
+                  src={partnerImageUrl} 
+                  alt="Benjamin Mujezinovic" 
                   className="w-full h-auto rounded-2xl"
                 />
               )}
