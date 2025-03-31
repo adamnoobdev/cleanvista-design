@@ -40,8 +40,8 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-3' : 'bg-transparent py-5'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        isScrolled ? 'bg-white shadow-sm py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -55,15 +55,12 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`relative overflow-hidden transition-colors duration-300 
+              className={`relative transition-colors duration-200 
                 ${isActive(item.path) 
                   ? 'text-primary font-medium' 
                   : 'text-foreground hover:text-primary'
                 }
-                after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-primary 
-                after:left-0 after:-bottom-1 after:rounded-full after:origin-bottom-right 
-                after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 
-                ${isActive(item.path) ? 'after:scale-x-100' : ''}`}
+                ${isActive(item.path) ? 'border-b-2 border-primary' : ''}`}
             >
               {item.name}
             </Link>
@@ -82,16 +79,16 @@ const Navbar = () => {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden glass animate-fade-in mt-3 mx-6 rounded-lg overflow-hidden">
+        <div className="md:hidden bg-white shadow-md mt-3 mx-6 rounded-md overflow-hidden">
           <div className="flex flex-col py-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-6 py-3 transition-colors duration-300 
+                className={`px-6 py-3 transition-colors duration-200 
                   ${isActive(item.path) 
-                    ? 'text-primary font-medium bg-white/60' 
-                    : 'text-foreground hover:bg-white/40 hover:text-primary'
+                    ? 'text-primary font-medium bg-secondary' 
+                    : 'text-foreground hover:bg-secondary hover:text-primary'
                   }`}
               >
                 {item.name}
