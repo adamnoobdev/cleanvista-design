@@ -11,7 +11,7 @@ const FormSubmitButton: React.FC<FormSubmitButtonProps> = ({ isSubmitting }) => 
     <button
       type="submit"
       disabled={isSubmitting}
-      className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-medium transition-all hover:bg-primary/90 disabled:opacity-70 flex items-center justify-center"
+      className="w-full bg-primary text-primary-foreground py-4 rounded-sm font-medium transition-all hover:bg-primary/90 disabled:opacity-70 flex items-center justify-center"
     >
       {isSubmitting ? (
         <>

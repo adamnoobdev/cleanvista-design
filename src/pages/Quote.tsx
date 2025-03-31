@@ -44,7 +44,7 @@ const QuotePage = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-sm flex items-center justify-center flex-shrink-0 font-bold">3</div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Platsbesök (vid behov)</h3>
                     <p className="text-muted-foreground">
@@ -55,7 +55,7 @@ const QuotePage = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-sm flex items-center justify-center flex-shrink-0 font-bold">4</div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Du får din offert</h3>
                     <p className="text-muted-foreground">
@@ -66,7 +66,7 @@ const QuotePage = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 font-bold">5</div>
+                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-sm flex items-center justify-center flex-shrink-0 font-bold">5</div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Vi utför arbetet</h3>
                     <p className="text-muted-foreground">

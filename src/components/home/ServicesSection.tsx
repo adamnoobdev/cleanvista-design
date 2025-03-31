@@ -39,7 +39,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ services }) => {
         <div className="mt-12 text-center animate-fade-in">
           <Link 
             to="/services" 
-            className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-full font-medium group"
+            className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
           >
             Se alla våra tjänster
             <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={18} />
