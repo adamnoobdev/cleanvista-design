@@ -44,8 +44,13 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold text-primary flex items-center space-x-2">
-          <span className="text-2xl">Bygg & Städ i toppklass Sandviken</span>
+        <Link to="/" className="text-xl font-bold text-primary flex items-center space-x-3">
+          <img 
+            src="https://xzzytdbscfivjkiqiwin.supabase.co/storage/v1/object/public/images/logotyp.jpg" 
+            alt="Bygg & Städ i toppklass Sandviken" 
+            className="h-10 w-auto"
+          />
+          <span className="text-2xl hidden md:inline">Bygg & Städ i toppklass Sandviken</span>
         </Link>
         
         {/* Desktop Menu */}
