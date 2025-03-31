@@ -27,8 +27,8 @@ async function getImageUrl(path: string): Promise<string | null> {
     
     console.log(`Getting Supabase image URL for ${normalizedPath}`);
     
-    // The bucket name is 'public' based on your screenshot, not 'images'
-    const { data } = supabase.storage.from('public').getPublicUrl(normalizedPath);
+    // Use 'images' bucket which is where the files are stored
+    const { data } = supabase.storage.from('images').getPublicUrl(normalizedPath);
     
     if (!data?.publicUrl) {
       console.error(`Failed to get public URL for ${normalizedPath}`);
@@ -105,7 +105,7 @@ export async function getHeroImageUrl(): Promise<string> {
   console.log("Fetching hero image...");
   try {
     // Try to get from Supabase storage
-    const dbImage = await getImageUrl('hero/main-hero.jpg');
+    const dbImage = await getImageUrl('main-hero.jpg');
     if (dbImage) {
       return dbImage;
     }
@@ -125,7 +125,7 @@ export async function getServiceImageUrl(type?: string): Promise<string> {
   
   try {
     // Try to get from Supabase storage if type is provided
-    const path = `services/${type}.jpg`;
+    const path = `${type}.jpg`;
     const dbImage = await getImageUrl(path);
     if (dbImage) {
       return dbImage;
@@ -142,7 +142,7 @@ export async function getAboutImageUrl(): Promise<string> {
   console.log("Fetching about image...");
   try {
     // Try to get from Supabase storage
-    const dbImage = await getImageUrl('about/team.jpg');
+    const dbImage = await getImageUrl('team.jpg');
     if (dbImage) {
       return dbImage;
     }
