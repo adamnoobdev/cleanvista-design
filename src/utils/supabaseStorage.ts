@@ -1,4 +1,3 @@
-
 // This file handles image URLs with fallbacks to placeholder images
 import { supabase } from "@/integrations/supabase/client";
 
@@ -37,12 +36,7 @@ async function getPublicUrl(bucket: string, path: string): Promise<string | null
     }
     
     // Bucket exists, try to get the public URL
-    const { data, error } = await supabase.storage.from(bucket).getPublicUrl(path);
-    
-    if (error) {
-      console.error(`Error getting public URL for ${bucket}/${path}:`, error);
-      return null;
-    }
+    const { data } = await supabase.storage.from(bucket).getPublicUrl(path);
     
     if (!data || !data.publicUrl) {
       console.error(`No public URL returned for ${bucket}/${path}`);
