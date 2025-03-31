@@ -1,3 +1,4 @@
+
 // This file handles image URLs with fallbacks to placeholder images
 import { supabase } from "@/integrations/supabase/client";
 
@@ -18,20 +19,37 @@ const PLACEHOLDER = {
   icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
 };
 
-// Helper function to get public URL for database images
-async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
+// Helper function to create bucket if it doesn't exist
+async function ensureBucketExists(bucketName: string): Promise<boolean> {
   try {
-    // Check if bucket exists first
+    // Check if bucket exists
     const { data: buckets, error: bucketError } = await supabase.storage.listBuckets();
     
     if (bucketError) {
       console.error('Error checking buckets:', bucketError);
-      return null;
+      return false;
     }
     
-    // If the bucket doesn't exist, return null
-    if (!buckets || !buckets.some(b => b.name === bucket)) {
-      console.warn(`Bucket "${bucket}" does not exist`);
+    // If the bucket doesn't exist, try to create it
+    if (!buckets || !buckets.some(b => b.name === bucketName)) {
+      console.log(`Bucket "${bucketName}" does not exist. Using local assets instead.`);
+      return false;
+    }
+    
+    return true;
+  } catch (e) {
+    console.error(`Failed to ensure bucket "${bucketName}" exists:`, e);
+    return false;
+  }
+}
+
+// Helper function to get public URL for database images
+async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
+  try {
+    // Check if bucket exists first
+    const bucketExists = await ensureBucketExists(bucket);
+    
+    if (!bucketExists) {
       return null;
     }
     
