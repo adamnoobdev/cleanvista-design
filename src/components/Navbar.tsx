@@ -26,9 +26,9 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Hem', path: '/' },
-    { name: 'Tjänster', path: '/services' },
-    { name: 'Begär offert', path: '/quote' },
-    { name: 'Priser', path: '/pricing' },
+    { name: 'Tjänster', path: '/tjanster' },
+    { name: 'Begär offert', path: '/offert' },
+    { name: 'Priser', path: '/priser' },
   ];
 
   const isActive = (path: string) => {

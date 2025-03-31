@@ -49,13 +49,13 @@ const Footer = () => {
                 <Link to="/" className="hover:underline transition-all">Hem</Link>
               </li>
               <li>
-                <Link to="/services" className="hover:underline transition-all">Tjänster</Link>
+                <Link to="/tjanster" className="hover:underline transition-all">Tjänster</Link>
               </li>
               <li>
-                <Link to="/quote" className="hover:underline transition-all">Begär offert</Link>
+                <Link to="/offert" className="hover:underline transition-all">Begär offert</Link>
               </li>
               <li>
-                <Link to="/pricing" className="hover:underline transition-all">Priser</Link>
+                <Link to="/priser" className="hover:underline transition-all">Priser</Link>
               </li>
             </ul>
           </div>

@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -37,10 +37,17 @@ const App = () => (
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/:serviceId" element={<Services />} />
-            <Route path="/quote" element={<Quote />} />
-            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/tjanster" element={<Services />} />
+            <Route path="/tjanster/:serviceId" element={<Services />} />
+            <Route path="/offert" element={<Quote />} />
+            <Route path="/priser" element={<Pricing />} />
+            
+            {/* Redirects for English routes to Swedish ones */}
+            <Route path="/services" element={<Navigate to="/tjanster" replace />} />
+            <Route path="/services/:serviceId" element={<Navigate to="/tjanster/:serviceId" replace />} />
+            <Route path="/quote" element={<Navigate to="/offert" replace />} />
+            <Route path="/pricing" element={<Navigate to="/priser" replace />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

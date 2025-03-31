@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
@@ -48,7 +49,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Link
-                to="/quote"
+                to="/offert"
                 className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
               >
                 Begär offert
@@ -80,7 +81,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Link
-                to="/quote"
+                to="/offert"
                 className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
               >
                 Begär offert
@@ -111,7 +112,7 @@ const PricingPage = () => {
                 </li>
               </ul>
               <Link
-                to="/quote"
+                to="/offert"
                 className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
               >
                 Begär offert
@@ -131,7 +132,7 @@ const PricingPage = () => {
                   skräddarsydd offert. Vi ser fram emot att hjälpa dig!
                 </p>
                 <Link
-                  to="/quote"
+                  to="/offert"
                   className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium group"
                 >
                   Begär offert

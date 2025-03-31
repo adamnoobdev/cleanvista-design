@@ -88,7 +88,7 @@ const ContactSection = () => {
             
             <div>
               <Button asChild size="default" className="rounded-sm">
-                <a href="/quote">Begär offert</a>
+                <a href="/offert">Begär offert</a>
               </Button>
             </div>
           </div>
