@@ -9,3 +9,13 @@ export interface ServiceData {
   icon: LucideIcon;
   delay: number;
 }
+
+export interface ServiceDetail {
+  id: string;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  features: string[];
+  imageUrl: string;
+  heroImage: string;
+}
