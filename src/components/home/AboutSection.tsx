@@ -30,7 +30,7 @@ const AboutSection = () => {
           <div className="relative order-1 md:order-2 animate-fade-in">
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80" 
+                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80" 
                 alt="Bygg och Städ Sandviken Team" 
                 className="w-full h-auto rounded-2xl"
               />

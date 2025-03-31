@@ -15,7 +15,7 @@ const Index = () => {
       <HeroSection 
         title="Professionella städ- och byggtjänster i Sandviken"
         subtitle="Vi erbjuder högkvalitativa tjänster inom flyttstäd, kontorsstäd, dödsbo, demontering och takbyten."
-        imageUrl="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80"
+        imageUrl="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80"
       />
       
       {/* About Section */}
