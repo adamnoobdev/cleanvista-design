@@ -52,12 +52,12 @@ const Navbar = () => {
           />
         </Link>
         
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-4">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`relative transition-colors duration-200 px-3 py-2 
+              className={`relative transition-colors duration-200 px-2 py-2 
                 ${isActive(item.path) 
                   ? 'text-primary font-medium border-b-2 border-primary' 
                   : 'text-foreground hover:text-primary'
