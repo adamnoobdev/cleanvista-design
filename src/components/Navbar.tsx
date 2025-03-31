@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -43,13 +44,13 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold text-primary flex items-center space-x-3">
+        <Link to="/" className="text-xl font-bold text-primary flex items-center">
           <img 
             src="https://xzzytdbscfivjkiqiwin.supabase.co/storage/v1/object/public/images//Logotyp.png" 
             alt="Bygg & Städ i toppklass Sandviken" 
             className="h-10 w-auto"
           />
-          <span className="text-2xl hidden md:inline">Bygg & Städ i toppklass Sandviken</span>
+          {/* Removed the text span that was here */}
         </Link>
         
         <div className="hidden md:flex space-x-8">
