@@ -19,23 +19,20 @@ const PLACEHOLDER = {
   icon: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80"
 };
 
-// Helper function to check bucket existence
+// Helper function to check if the bucket exists
 async function checkBucketExists(bucketName: string): Promise<boolean> {
   try {
     console.log(`Checking if bucket "${bucketName}" exists...`);
     
-    // Attempt to list files in the bucket - this is a more reliable way to check
-    // if the bucket exists and if we have access to it
-    const { data, error } = await supabase.storage
-      .from(bucketName)
-      .list();
-      
+    // Get bucket details directly
+    const { data, error } = await supabase.storage.getBucket(bucketName);
+    
     if (error) {
       console.error(`Error checking bucket "${bucketName}":`, error.message);
       return false;
     }
     
-    console.log(`Successfully accessed bucket "${bucketName}" with ${data?.length || 0} files`);
+    console.log(`Successfully verified bucket "${bucketName}" exists`, data);
     return true;
   } catch (e) {
     console.error(`Exception when checking bucket "${bucketName}":`, e);
@@ -43,24 +40,40 @@ async function checkBucketExists(bucketName: string): Promise<boolean> {
   }
 }
 
+// Fixed function to correctly normalize paths without double slashes
+function normalizePath(path: string): string {
+  // Remove leading slash if present
+  if (path.startsWith('/')) {
+    path = path.substring(1);
+  }
+  
+  return path;
+}
+
 // Helper function to get public URL for database images
 async function getPublicUrl(bucket: string, path: string): Promise<string | null> {
   try {
+    // Normalize path to prevent double slashes
+    const normalizedPath = normalizePath(path);
+    console.log(`Getting public URL for ${bucket}/${normalizedPath}`);
+    
     // Check if bucket exists first
     const bucketExists = await checkBucketExists(bucket);
     
     if (!bucketExists) {
-      console.log(`Using local assets for ${bucket}/${path} because bucket doesn't exist or is inaccessible`);
+      console.log(`Using local assets for ${bucket}/${normalizedPath} because bucket doesn't exist or is inaccessible`);
       return null;
     }
     
     // Bucket exists, try to get the public URL
-    const { data } = await supabase.storage.from(bucket).getPublicUrl(path);
+    const { data } = await supabase.storage.from(bucket).getPublicUrl(normalizedPath);
     
     if (!data || !data.publicUrl) {
-      console.error(`No public URL returned for ${bucket}/${path}`);
+      console.error(`No public URL returned for ${bucket}/${normalizedPath}`);
       return null;
     }
+    
+    console.log(`Generated public URL: ${data.publicUrl}`);
     
     // Test if the image can be accessed
     try {
@@ -86,7 +99,7 @@ async function getPublicUrl(bucket: string, path: string): Promise<string | null
 export async function getHeroImageUrl(): Promise<string> {
   console.log("Fetching hero image...");
   try {
-    // Try to get from Supabase storage
+    // Try to get from Supabase storage - fixed path
     const dbImage = await getPublicUrl('images', 'hero/main-hero.jpg');
     if (dbImage) {
       console.log("Successfully loaded hero image from Supabase:", dbImage);
