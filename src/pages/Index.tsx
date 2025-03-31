@@ -7,18 +7,19 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 import QuoteSection from '@/components/home/QuoteSection';
 import { services } from '@/data/services';
 import { testimonials } from '@/data/testimonials';
-
-// Importera hero-bild från assets-mappen
-import heroImage from '@/assets/images/hero/main-hero.jpg';
+import { getHeroImageUrl } from '@/utils/supabaseStorage';
 
 const Index = () => {
+  // Use Supabase Storage URL for hero image
+  const heroImageUrl = getHeroImageUrl('main-hero.jpg');
+  
   return (
     <div className="page-transition">
       {/* Hero Section */}
       <HeroSection 
         title="Professionella städ- och byggtjänster i Sandviken"
         subtitle="Vi erbjuder högkvalitativa tjänster inom flyttstäd, kontorsstäd, dödsbo, demontering och takbyten."
-        imageUrl={heroImage}
+        imageUrl={heroImageUrl}
       />
       
       {/* About Section */}

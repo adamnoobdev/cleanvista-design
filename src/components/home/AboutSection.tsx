@@ -2,9 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { getAboutImageUrl } from '@/utils/supabaseStorage';
 
-// Importera team-bild från assets-mappen
-import teamImage from '@/assets/images/about/team.jpg';
+// Get the team image from Supabase Storage
+const teamImageUrl = getAboutImageUrl('team.jpg');
 
 const AboutSection = () => {
   return (
@@ -33,7 +34,7 @@ const AboutSection = () => {
           <div className="relative order-1 md:order-2 animate-fade-in">
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src={teamImage} 
+                src={teamImageUrl} 
                 alt="Bygg och Städ Sandviken Team" 
                 className="w-full h-auto rounded-2xl"
               />

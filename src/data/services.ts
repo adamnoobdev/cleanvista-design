@@ -1,21 +1,15 @@
 
 import { HomeIcon, Building2, Trash2, Construction, Warehouse } from 'lucide-react';
 import { ServiceData } from '@/types/services';
+import { getServiceImageUrl } from '@/utils/supabaseStorage';
 
-// Importera bilder från assets-mappen
-import flyttstadImage from '@/assets/images/services/flyttstad.jpg';
-import kontorsstadImage from '@/assets/images/services/kontorsstad.jpg';
-import dodsboImage from '@/assets/images/services/dodsbo.jpg';
-import demonteringImage from '@/assets/images/services/demontering.jpg';
-import takbytenImage from '@/assets/images/services/takbyten.jpg';
-
-// Service data
+// Service data with Supabase Storage URLs
 export const services: ServiceData[] = [
   {
     id: "flyttstad",
     title: "Flyttstäd",
     description: "Låt oss ta hand om städningen när du flyttar så att du kan fokusera på din nya bostad.",
-    imageUrl: flyttstadImage,
+    imageUrl: getServiceImageUrl('flyttstad.jpg'),
     icon: HomeIcon,
     delay: 100
   },
@@ -23,7 +17,7 @@ export const services: ServiceData[] = [
     id: "kontorsstad",
     title: "Kontorsstäd",
     description: "Vi erbjuder professionell kontorsstädning för en fräsch och hygienisk arbetsmiljö.",
-    imageUrl: kontorsstadImage,
+    imageUrl: getServiceImageUrl('kontorsstad.jpg'),
     icon: Building2,
     delay: 200
   },
@@ -31,7 +25,7 @@ export const services: ServiceData[] = [
     id: "dodsbo",
     title: "Dödsbo",
     description: "Professionell och respektfull hantering av dödsbon när du behöver hjälp som mest.",
-    imageUrl: dodsboImage,
+    imageUrl: getServiceImageUrl('dodsbo.jpg'),
     icon: Warehouse,
     delay: 300
   },
@@ -39,7 +33,7 @@ export const services: ServiceData[] = [
     id: "demontering",
     title: "Demontering & Bortforsling",
     description: "Vi demonterar och transporterar bort möbler, inredning eller annat du vill bli av med.",
-    imageUrl: demonteringImage,
+    imageUrl: getServiceImageUrl('demontering.jpg'),
     icon: Trash2,
     delay: 400
   },
@@ -47,7 +41,7 @@ export const services: ServiceData[] = [
     id: "takbyten",
     title: "Takbyten",
     description: "Professionell installation och reparation av tak med kvalitetsmaterial och garantier.",
-    imageUrl: takbytenImage,
+    imageUrl: getServiceImageUrl('takbyten.jpg'),
     icon: Construction,
     delay: 500
   }
