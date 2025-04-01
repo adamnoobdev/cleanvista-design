@@ -46,7 +46,7 @@ const ServiceDetailView: React.FC<ServiceDetailViewProps> = ({ service }) => {
           </div>
           
           <div className="text-center mt-12">
-            <Link to="/services" className="text-primary font-medium hover:underline">
+            <Link to="/tjanster" className="text-primary font-medium hover:underline">
               &larr; Tillbaka till alla tjänster
             </Link>
           </div>

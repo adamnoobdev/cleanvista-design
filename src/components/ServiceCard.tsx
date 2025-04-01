@@ -38,7 +38,7 @@ const ServiceCard = ({ id, title, description, imageUrl, icon: Icon }: ServiceCa
         <h3 className="text-xl font-semibold mb-3">{title}</h3>
         <p className="text-muted-foreground mb-5 flex-grow">{description}</p>
         <Link 
-          to={`/services/${id}`} 
+          to={`/tjanster/${id}`} 
           className="inline-flex items-center text-primary font-medium group/link mt-auto"
           aria-label={`Läs mer om ${title}`}
         >
