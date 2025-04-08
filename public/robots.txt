@@ -3,5 +3,11 @@
 User-agent: *
 Allow: /
 
+# Disallow duplicate content paths
+Disallow: /services/
+Disallow: /services/*
+Disallow: /quote
+Disallow: /pricing
+
 # Sitemap location
 Sitemap: https://bygg-stad-sandviken.lovable.app/sitemap.xml

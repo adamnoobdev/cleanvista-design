@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6">
           {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-4">Kontakta oss</h3>
+            <h3 className="text-xl font-semibold mb-4">Kontakta Bygg & Städ Sandviken</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="flex-shrink-0" />
@@ -52,6 +52,18 @@ const Footer = () => {
                 <Link to="/tjanster" className="hover:underline transition-all">Tjänster</Link>
               </li>
               <li>
+                <Link to="/tjanster/flyttstad" className="hover:underline transition-all">Flyttstäd</Link>
+              </li>
+              <li>
+                <Link to="/tjanster/kontorsstad" className="hover:underline transition-all">Kontorsstäd</Link>
+              </li>
+              <li>
+                <Link to="/tjanster/dodsbo" className="hover:underline transition-all">Dödsbo</Link>
+              </li>
+              <li>
+                <Link to="/tjanster/takbyten" className="hover:underline transition-all">Takbyten</Link>
+              </li>
+              <li>
                 <Link to="/offert" className="hover:underline transition-all">Begär offert</Link>
               </li>
               <li>
@@ -68,6 +80,12 @@ const Footer = () => {
               demontering/bortforsling samt takbyten. Med fokus på kvalitet och kundnöjdhet 
               har vi byggt ett starkt förtroende i Sandviken med omnejd.
             </p>
+            <div className="mt-4">
+              <h4 className="text-base font-medium mb-2">Tjänsteområden</h4>
+              <p className="text-sm">
+                Sandviken, Gävle, Hofors, Ockelbo och omnejd
+              </p>
+            </div>
           </div>
         </div>
         

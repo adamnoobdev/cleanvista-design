@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/home/AboutSection';
 import ServicesSection from '@/components/home/ServicesSection';
@@ -72,10 +73,17 @@ const Index = () => {
   
   return (
     <div className="page-transition">
+      <Helmet>
+        <title>Bygg & Städ i toppklass Sandviken - Professionell städ- och byggtjänst</title>
+        <meta name="description" content="Bygg och städ i Sandviken - Din lokala partner för städning och byggtjänster. Vi erbjuder flyttstäd, kontorsstäd, dödsbo, demontering och takbyten med kvalitetsgaranti." />
+        <meta name="keywords" content="bygg och städ i sandviken, städ sandviken, bygg sandviken, flyttstäd sandviken, kontorsstäd, dödsbo sandviken" />
+        <link rel="canonical" href="https://bygg-stad-sandviken.lovable.app/" />
+      </Helmet>
+      
       {/* Hero Section */}
       <HeroSection 
-        title="Professionella städ- och byggtjänster i Sandviken"
-        subtitle="Vi erbjuder högkvalitativa tjänster inom flyttstäd, kontorsstäd, dödsbo, demontering och takbyten."
+        title="Professionella bygg- och städtjänster i Sandviken"
+        subtitle="Vi erbjuder högkvalitativa tjänster inom flyttstäd, kontorsstäd, dödsbo, demontering och takbyten i Sandviken med omnejd."
         imageUrl={heroImageUrl}
       />
       
@@ -84,6 +92,46 @@ const Index = () => {
       
       {/* Services Section */}
       <ServicesSection services={services} />
+      
+      <section className="py-12 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="prose max-w-none">
+            <h2 className="text-2xl font-bold mb-4">Bygg & Städ i Sandviken - Kvalitet och service</h2>
+            <p>
+              Bygg & Städ i toppklass Sandviken är ditt självklara val för professionella städ- och byggtjänster i Sandvikenområdet. 
+              Med vår erfarenhet och kunskap säkerställer vi att varje uppdrag utförs med noggrannhet och högsta kvalitet.
+            </p>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-3">Flyttstäd i Sandviken</h3>
+            <p>
+              Vår flyttstädning garanterar en skinande ren bostad när du lämnar över nycklarna. Vi följer en detaljerad checklista 
+              och säkerställer att varje utrymme är grundligt rengjort från golv till tak. Med vår kvalitetsgaranti kan du känna 
+              dig trygg med att städningen uppfyller alla krav som ställs vid en besiktning.
+            </p>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-3">Kontorsstäd i Sandviken</h3>
+            <p>
+              En ren och välskött arbetsmiljö bidrar till högre produktivitet och trivsel. Våra kontorsstädningstjänster 
+              skräddarsys efter ditt företags specifika behov, oavsett om det handlar om daglig städning eller mer omfattande periodicitet.
+            </p>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-3">Byggarbeten i Sandviken</h3>
+            <p>
+              Från takbyten till demontering - vårt erfarna team hanterar en mängd olika byggprojekt med precision och yrkesskicklighet. 
+              Vi använder endast material av hög kvalitet och följer alla gällande byggnormer för att säkerställa ett hållbart resultat.
+            </p>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-3">Varför välja oss?</h3>
+            <ul>
+              <li>Lokal förankring och god kännedom om Sandviken</li>
+              <li>Över 15 års erfarenhet i branschen</li>
+              <li>Fullt försäkrade och certifierade</li>
+              <li>Miljövänliga rengöringsmetoder och material</li>
+              <li>Konkurrensmässiga priser och transparent offerering</li>
+            </ul>
+          </div>
+        </div>
+      </section>
       
       {/* Testimonials Section */}
       <TestimonialsSection testimonials={testimonials} />
