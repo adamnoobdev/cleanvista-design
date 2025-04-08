@@ -20,8 +20,8 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="flex-shrink-0" />
-                <a href="mailto:info@byggochstadsandviken.se" className="hover:underline transition-all">
-                  info@byggochstadsandviken.se
+                <a href="mailto:info@byggstadsandviken.se" className="hover:underline transition-all">
+                  info@byggstadsandviken.se
                 </a>
               </div>
               <div className="flex items-start space-x-3">

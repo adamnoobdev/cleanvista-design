@@ -73,7 +73,7 @@ const ContactSection = () => {
               </a>
               
               <a 
-                href="mailto:Benjamin.saic@gmail.com" 
+                href="mailto:info@byggstadsandviken.se" 
                 className="flex items-center gap-3 group"
               >
                 <div className="bg-primary p-2 rounded-sm text-white group-hover:bg-primary/90 transition-colors">
@@ -81,7 +81,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="font-medium text-sm">E-post</div>
-                  <div className="text-muted-foreground text-sm">Benjamin.saic@gmail.com</div>
+                  <div className="text-muted-foreground text-sm">info@byggstadsandviken.se</div>
                 </div>
               </a>
             </div>

@@ -109,8 +109,8 @@ const QuotePage = () => {
               <div className="mt-8 p-6 bg-white border border-border shadow-sm rounded-sm">
                 <h3 className="text-lg font-semibold mb-3">Föredrar du att prata med oss direkt?</h3>
                 <p className="text-muted-foreground mb-4">
-                  Ring oss på <a href="tel:+46701234567" className="text-primary font-medium">070-123 45 67</a> eller 
-                  skicka e-post till <a href="mailto:info@byggochstadsandviken.se" className="text-primary font-medium">info@byggochstadsandviken.se</a>
+                  Ring oss på <a href="tel:+46725302323" className="text-primary font-medium">072-530 23 23</a> eller 
+                  skicka e-post till <a href="mailto:info@byggstadsandviken.se" className="text-primary font-medium">info@byggstadsandviken.se</a>
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Öppettider: Måndag-fredag 08:00-17:00
