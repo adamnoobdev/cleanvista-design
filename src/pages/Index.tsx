@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/home/AboutSection';
 import ServicesSection from '@/components/home/ServicesSection';
@@ -11,6 +10,17 @@ import { getServicesData } from '@/data/services';
 import { testimonials } from '@/data/testimonials';
 import { getHeroImageUrl } from '@/utils/supabaseStorage';
 import LoadingSpinner from '@/components/LoadingSpinner';
+
+// Try importing react-helmet with error handling
+let Helmet: any;
+try {
+  // Dynamic import for Helmet
+  Helmet = require("react-helmet").Helmet;
+} catch (error) {
+  console.error("Failed to load React Helmet in Index:", error);
+  // Fallback empty component
+  Helmet = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+}
 
 const Index = () => {
   // State for storing images and services
@@ -73,12 +83,14 @@ const Index = () => {
   
   return (
     <div className="page-transition">
-      <Helmet>
-        <title>Bygg & Städ i toppklass Sandviken - Professionell städ- och byggtjänst</title>
-        <meta name="description" content="Bygg och städ i Sandviken - Din lokala partner för städning och byggtjänster. Vi erbjuder flyttstäd, kontorsstäd, dödsbo, demontering och takbyten med kvalitetsgaranti." />
-        <meta name="keywords" content="bygg och städ i sandviken, städ sandviken, bygg sandviken, flyttstäd sandviken, kontorsstäd, dödsbo sandviken" />
-        <link rel="canonical" href="https://bygg-stad-sandviken.lovable.app/" />
-      </Helmet>
+      {Helmet && (
+        <Helmet>
+          <title>Bygg & Städ i toppklass Sandviken - Professionell städ- och byggtjänst</title>
+          <meta name="description" content="Bygg och städ i Sandviken - Din lokala partner för städning och byggtjänster. Vi erbjuder flyttstäd, kontorsstäd, dödsbo, demontering och takbyten med kvalitetsgaranti." />
+          <meta name="keywords" content="bygg och städ i sandviken, städ sandviken, bygg sandviken, flyttstäd sandviken, kontorsstäd, dödsbo sandviken" />
+          <link rel="canonical" href="https://bygg-stad-sandviken.lovable.app/" />
+        </Helmet>
+      )}
       
       {/* Hero Section */}
       <HeroSection 
